@@ -69,75 +69,65 @@
   border-right: 1px solid rgba(15, 23, 42, 0.08);
 }
 
-/* Professional Engineering Feature Cards (Eliminates AI-template frosted glass & neon glow) */
-.VPFeature {
-  background: #ffffff !important;
-  border: 1px solid #e2e8f0 !important;
-  border-radius: 8px !important;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04) !important;
-  transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease !important;
-  padding: 24px !important;
+/* Custom Home Content Layout */
+.custom-home-content {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 10px 24px 80px;
 }
 
-:root.dark .VPFeature {
-  background: #0d121f !important;
-  border: 1px solid rgba(255, 255, 255, 0.08) !important;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3) !important;
+.custom-home-content h2 {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  border-top: none;
+  margin-top: 36px;
+  margin-bottom: 18px;
+  color: var(--vp-c-text-1);
 }
 
-.VPFeature:hover {
-  transform: translateY(-2px) !important;
-  border-color: #cbd5e1 !important;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06) !important;
+.custom-home-content h3 {
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin-top: 28px;
+  margin-bottom: 14px;
+  color: var(--vp-c-text-1);
 }
 
-:root.dark .VPFeature:hover {
-  border-color: rgba(255, 255, 255, 0.22) !important;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4) !important;
+/* Professional Normal Technical Listing (Replaces AI-like card boxes) */
+.custom-home-content ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0 0 24px 0;
 }
 
-/* Technical Icon Badge */
-.VPFeature .icon {
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  width: 38px !important;
-  height: 38px !important;
-  border-radius: 6px !important;
-  background: rgba(2, 132, 199, 0.08) !important;
-  border: 1px solid rgba(2, 132, 199, 0.18) !important;
-  color: #0284c7 !important;
-  font-size: 16px !important;
-  font-weight: 700 !important;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace !important;
-  margin-bottom: 16px !important;
+.custom-home-content ul li {
+  position: relative;
+  padding: 12px 0 12px 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--vp-c-text-2);
 }
 
-:root.dark .VPFeature .icon {
-  background: rgba(56, 189, 248, 0.08) !important;
-  border: 1px solid rgba(56, 189, 248, 0.20) !important;
-  color: #38bdf8 !important;
+:root:not(.dark) .custom-home-content ul li {
+  border-bottom: 1px solid #e2e8f0;
 }
 
-.VPFeature h2 {
-  font-size: 16px !important;
-  font-weight: 600 !important;
-  letter-spacing: -0.01em !important;
-  margin-bottom: 8px !important;
+.custom-home-content ul li strong {
+  color: var(--vp-c-text-1);
+  font-weight: 600;
 }
 
-:root.dark .VPFeature h2 {
-  color: #f8fafc !important;
-}
-
-.VPFeature p {
-  font-size: 14px !important;
-  line-height: 1.6 !important;
-  color: #64748b !important;
-}
-
-:root.dark .VPFeature p {
-  color: #94a3b8 !important;
+.custom-home-content ul li::before {
+  content: "›";
+  position: absolute;
+  left: 6px;
+  top: 10px;
+  color: var(--vp-c-brand-1);
+  font-weight: 700;
+  font-size: 16px;
 }
 
 /* Clean Technical Buttons (No round pills, no AI-style blur glows) */

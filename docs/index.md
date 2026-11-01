@@ -18,29 +18,20 @@ hero:
         - theme: alt
           text: GitHub Repository
           link: https://github.com/pkpranav-projects/PRANAV-PYQ-FETCHER-AMRITA
-
-features:
-    - icon: ◈
-      title: Automatic Pre-Flight Network Ping
-      details: Pings the internal Amrita repository on launch to detect campus Wi-Fi or VPN connectivity automatically.
-    - icon: ⬡
-      title: Built-in Offline Demo Mode
-      details: Stuck at home? Browse sample courses, test fuzzy search, and explore simulated question papers offline.
-    - icon: ⌕
-      title: Instant Search Filter (/)
-      details: Tap / in any menu to type and filter subjects, semesters, and question papers in milliseconds.
-    - icon: ⊞
-      title: Native Browser PDF Preview
-      details: Seamlessly launches question paper PDFs inside Microsoft Edge, Chrome, Firefox, or Brave.
-    - icon: ⤓
-      title: Organized Local Downloads
-      details: Automatically creates and routes PDF downloads into a clean downloads/ folder.
-    - icon: ⇄
-      title: Interactive Stack Breadcrumbs
-      details: Keep track of your exact path (e.g. B.Tech CSE → Sem 4 → End Sem) and step backwards effortlessly.
 ---
 
 <div class="custom-home-content">
+
+## Core Capabilities
+
+- **Automatic Pre-Flight Network Ping** &mdash; Automatically tests socket connectivity to `dspace.amritanet.edu:8080` on application launch, detecting whether you are on campus Wi-Fi or VPN without any manual configuration.
+- **Built-in Offline Demo Mode** &mdash; Browse sample courses, test fuzzy search, and explore simulated question papers offline when off-campus.
+- **Instant Search Filter (`/`)** &mdash; Tap `/` in any menu to type and filter subjects, semesters, and question papers in milliseconds.
+- **Native Browser PDF Preview** &mdash; Seamlessly launches question paper PDFs inside your default browser (Microsoft Edge, Chrome, Firefox, Brave) for high-fidelity viewing.
+- **Organized Local Downloads** &mdash; Automatically creates and routes PDF downloads into a clean, dedicated `downloads/` directory.
+- **Interactive Stack Breadcrumbs** &mdash; Keep track of your exact navigation path (e.g. `B.Tech CSE` &rarr; `Sem 4` &rarr; `End Sem`) and step backwards effortlessly.
+
+---
 
 ## Terminal-First Architecture
 
