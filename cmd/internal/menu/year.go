@@ -3,6 +3,7 @@ package menu
 import (
 	"fmt"
 	"os"
+	"path/filepath"
 	"strings"
 	"time"
 
@@ -124,14 +125,18 @@ func (yt *YearTable) ChooseQP(url string) {
 							fmt.Println(configs.ErrorStyle.Render(fmt.Sprintf("Error: %v\n", err)))
 						}
 					} else if action == "download" {
-						// Download the file
-						filename := strings.ReplaceAll(fileItem.name, " ", "_") + ".pdf"
-						fmt.Printf("Downloading to %s...\n", filename)
+						// Download the file into downloads folder
+						cleanName := strings.ReplaceAll(fileItem.name, " ", "_")
+						if !strings.HasSuffix(cleanName, ".pdf") {
+							cleanName += ".pdf"
+						}
+						downloadPath := filepath.Join("downloads", cleanName)
+						fmt.Printf("Downloading to %s...\n", downloadPath)
 
-						if err := yt.ReqClient.WebClient.DownloadFile(url, filename); err != nil {
+						if err := yt.ReqClient.WebClient.DownloadFile(url, downloadPath); err != nil {
 							fmt.Println(configs.ErrorStyle.Render(fmt.Sprintf("Download Error: %v\n", err)))
 						} else {
-							fmt.Println("Download Complete!")
+							fmt.Println(configs.SuccessStyle.Render(fmt.Sprintf("✓ Download Complete: %s", downloadPath)))
 							time.Sleep(1 * time.Second)
 						}
 					}

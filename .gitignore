@@ -27,3 +27,5 @@ go.work.sum
 docs/node_modules/
 docs/.vitepress/cache/
 docs/.vitepress/dist/
+
+downloads/
