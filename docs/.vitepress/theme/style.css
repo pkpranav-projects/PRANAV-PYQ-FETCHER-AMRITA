@@ -183,42 +183,90 @@
   background: rgba(255, 255, 255, 0.04) !important;
 }
 
-/* Precision Technical Documentation Tables */
+/* Precision Technical Documentation Tables (Fixes display:block empty box defect) */
 .vp-doc table {
-  background: #ffffff;
-  border-radius: 6px;
-  overflow: hidden;
-  border: 1px solid #e2e8f0;
-  width: 100%;
+  display: table !important;
+  width: 100% !important;
+  table-layout: auto !important;
+  border-collapse: separate !important;
+  border-spacing: 0 !important;
+  margin: 20px 0 28px !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 8px !important;
+  overflow: hidden !important;
+  background: transparent !important;
 }
 
-:root.dark .vp-doc table {
-  background: #0d121f;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+:root:not(.dark) .vp-doc table {
+  border: 1px solid #e2e8f0 !important;
+}
+
+.vp-doc thead {
+  display: table-header-group !important;
+  width: 100% !important;
+}
+
+.vp-doc tbody {
+  display: table-row-group !important;
+  width: 100% !important;
+}
+
+.vp-doc tr {
+  display: table-row !important;
+  width: 100% !important;
 }
 
 .vp-doc th {
-  background: #f8fafc;
-  font-size: 12px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  color: #475569;
-  border-bottom: 1px solid #e2e8f0;
+  display: table-cell !important;
+  background: rgba(15, 22, 38, 0.75) !important;
+  padding: 12px 18px !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  color: #94a3b8 !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-right: 1px solid rgba(255, 255, 255, 0.05) !important;
+  text-align: left !important;
 }
 
-:root.dark .vp-doc th {
-  background: #131a29;
-  color: #94a3b8;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+:root:not(.dark) .vp-doc th {
+  background: #f8fafc !important;
+  color: #475569 !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+  border-right: 1px solid #e2e8f0 !important;
 }
 
 .vp-doc td {
-  border-bottom: 1px solid #f1f5f9;
+  display: table-cell !important;
+  padding: 12px 18px !important;
+  font-size: 14px !important;
+  line-height: 1.5 !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+  border-right: 1px solid rgba(255, 255, 255, 0.04) !important;
+  background: rgba(10, 14, 24, 0.60) !important;
+  color: var(--vp-c-text-2) !important;
 }
 
-:root.dark .vp-doc td {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+:root:not(.dark) .vp-doc td {
+  border-bottom: 1px solid #f1f5f9 !important;
+  border-right: 1px solid #f1f5f9 !important;
+  background: rgba(255, 255, 255, 0.85) !important;
+}
+
+.vp-doc th:last-child,
+.vp-doc td:last-child {
+  border-right: none !important;
+  width: auto !important;
+}
+
+.vp-doc tr:last-child td {
+  border-bottom: none !important;
+}
+
+/* Ensure key columns stay compact while descriptions take remaining full width */
+.vp-doc td:first-child code {
+  white-space: nowrap !important;
 }
 
 /* Technical Code Blocks */
