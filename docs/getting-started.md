@@ -1,38 +1,32 @@
-# Getting Started with Amrita PYQ CLI Tool
+# Getting Started with PRANAV PYQ FETCHER AMRITA
 
 ## Introduction
 
-Welcome to the **Amrita PYQ CLI Tool**! This command-line interface (CLI) application is designed to simplify accessing previous year question papers (PYQs) from Amrita University. It fetches and displays the question papers directly in your default browser, making the process fast and easy.
+Welcome to **PRANAV PYQ FETCHER AMRITA**! This command-line interface (CLI) application simplifies accessing previous year question papers (PYQs) from Amrita University. It fetches, displays, and downloads question papers directly from your terminal, making exam prep fast and easy.
 
 ## Prerequisites
 
-Before you begin, ensure you have the following:
+- **Network**:
+  - For live question papers: Connect to **Amrita WiFi** or use **Amrita VPN**.
+  - For offline exploration: **Offline Demo Mode** is built-in and works anywhere without network requirements!
+- **Development Environment** (if running from source):
+  - **Golang** (1.23+) installed on your system.
+  - Or simply run the pre-built `pranav-pyq.exe` / `run.bat` on Windows!
 
-- **Network**: Connect to **Amrita WiFi** or use a **VPN** to access the network.
-- **Development Environment**:
-    - **Golang** installed on your system.
-    - A working **Go Compiler**.
-    - **golangci** installed on your system (Recommended for testing).
+## Installation & Running
 
-## Installation
-
-### Step 1: Clone the Repository
-
-Clone the repository to your local machine. Open a terminal and run:
-
-```sh
-git clone https://github.com/CSE-25/amrita_pyq
+### Option 1: One-Click Run (Windows)
+Double-click `run.bat` in the project root directory, or execute in PowerShell:
+```powershell
+.\pranav-pyq.exe
 ```
 
-### Step 2: Run the Application
+### Option 2: Run from Source
+Clone the repository and run:
+```sh
+git clone https://github.com/pkpranav-projects/PRANAV-PYQ-FETCHER-AMRITA.git
+cd PRANAV-PYQ-FETCHER-AMRITA
+go run main.go
+```
 
-1. Open the terminal and navigate to the cloned repository directory:
-    ```sh
-    cd amrita_pyq
-    ```
-2. Execute the application with the following command:
-    ```sh
-    go run main.go
-    ```
-
-You're all set! Enjoy seamless access to Amrita University's previous year question papers.
+Enjoy seamless access to Amrita University's previous year question papers!

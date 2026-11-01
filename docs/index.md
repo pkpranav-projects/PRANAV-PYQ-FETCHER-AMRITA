@@ -2,39 +2,39 @@
 layout: home
 
 hero:
-    name: Amrita PYQ
+    name: PRANAV PYQ FETCHER AMRITA
     text: Explore Amrita PYQs effortlessly!
-    tagline: Seamlessly fetch and view previous year question papers with just a command.
+    tagline: Seamlessly fetch, view, and download previous year question papers directly from your terminal.
     actions:
         - theme: brand
           text: Get Started
           link: /getting-started
         - theme: alt
           text: View on GitHub
-          link: https://github.com/CSE-25/amrita_pyq
+          link: https://github.com/pkpranav-projects/PRANAV-PYQ-FETCHER-AMRITA
 
 features:
     - icon: ⚡
       title: Quick Access
-      details: Fetch previous year question papers (PYQs) instantly without navigating through multiple websites.
+      details: Fetch previous year question papers (PYQs) instantly from Amrita DSpace repository without browser clutter.
     - icon: 🌐
       title: Browser Integration
-      details: Opens the question papers directly in your default browser for seamless viewing.
-    - icon: 🔍
-      title: Search Simplified
-      details: Search and locate specific question papers efficiently.
-    - icon: 💻
-      title: Cross-Platform
-      details: Works on all major operating systems.
+      details: Opens question paper PDFs directly in your default browser for seamless viewing.
+    - icon: 🚀
+      title: Offline Demo Mode
+      details: Test all menus, subjects, and simulated papers from home even without campus Wi-Fi or VPN!
+    - icon: 📥
+      title: Local Downloads
+      details: Save PDFs directly into an organized downloads folder with a single keypress.
 ---
 
 ## How It Works
 
-1. **Install the Tool**  
-   Follow the [installation guide](getting-started#installation) to set up the CLI tool.
+1. **Install or Download the Tool**  
+   Follow the [getting started guide](getting-started) to run the CLI tool or launch `run.bat`.
 
 2. **Fetch Question Papers**  
-   Use a simple command to retrieve the desired question paper.
+   Navigate Course &rarr; Semester &rarr; Assessment &rarr; Subject &rarr; Question Paper.
 
-3. **Seamless Viewing**  
-   The question paper will open in your default browser for easy access and review.
+3. **Seamless Viewing & Download**  
+   The question paper will open in your default browser or save to your local machine.

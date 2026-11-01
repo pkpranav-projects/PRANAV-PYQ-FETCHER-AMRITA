@@ -1,10 +1,10 @@
 import { defineConfig } from "vitepress";
 
 export default defineConfig({
-    base: "/amrita_pyq/", // Not to be changed as it's the /<repository-name>/ for deployment.
-    title: "Amrita PYQ",
-    titleTemplate: ":title | Amrita PYQ",
-    description: "A CLI tool for accessing PYQs.",
+    base: "/PRANAV-PYQ-FETCHER-AMRITA/",
+    title: "PRANAV PYQ FETCHER AMRITA",
+    titleTemplate: ":title | PRANAV PYQ FETCHER AMRITA",
+    description: "An interactive Terminal CLI tool for accessing Amrita University PYQs.",
     cleanUrls: true,
 
     themeConfig: {
@@ -28,7 +28,7 @@ export default defineConfig({
         socialLinks: [
             {
                 icon: "github",
-                link: "https://github.com/CSE-25/amrita_pyq",
+                link: "https://github.com/pkpranav-projects/PRANAV-PYQ-FETCHER-AMRITA",
             },
         ],
     },
