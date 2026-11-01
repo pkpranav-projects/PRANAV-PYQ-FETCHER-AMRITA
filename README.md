@@ -10,47 +10,160 @@
 
   <!-- Badges Shelf -->
   <p align="center">
-    <a href="https://pkpranav-projects.github.io/PRANAV-PYQ-FETCHER-AMRITA/"><img src="https://img.shields.io/badge/Documentation-Live%20Site-blueviolet?style=for-the-badge&logo=rocket" alt="Docs Site" /></a>
-    <a href="https://golang.org"><img src="https://img.shields.io/badge/Language-Go%201.23+-00ADD8?style=for-the-badge&logo=go&logoColor=white" alt="Go Version" /></a>
-    <img src="https://img.shields.io/badge/Version-v2.0.0-10B981?style=for-the-badge&logo=github&logoColor=white" alt="Version 2.0" />
+    <a href="https://github.com/pkpranav-projects/PRANAV-PYQ-FETCHER-AMRITA/releases/latest"><img src="https://img.shields.io/github/v/release/pkpranav-projects/PRANAV-PYQ-FETCHER-AMRITA?style=for-the-badge&logo=github&color=8B5CF6" alt="Latest Release" /></a>
+    <a href="https://github.com/pkpranav-projects/PRANAV-PYQ-FETCHER-AMRITA/releases"><img src="https://img.shields.io/github/downloads/pkpranav-projects/PRANAV-PYQ-FETCHER-AMRITA/total?style=for-the-badge&color=10B981&logo=github" alt="Downloads" /></a>
+    <a href="https://pkpranav-projects.github.io/PRANAV-PYQ-FETCHER-AMRITA/"><img src="https://img.shields.io/badge/Docs-Live%20Site-00ADD8?style=for-the-badge&logo=rocket" alt="Docs Site" /></a>
     <img src="https://img.shields.io/badge/Platform-Windows%20%7C%20macOS%20%7C%20Linux-5865F2?style=for-the-badge&logo=linux&logoColor=white" alt="Cross Platform" />
     <img src="https://img.shields.io/badge/Campus%20Network-Amrita%20Wi--Fi%20%7C%20VPN-A81D37?style=for-the-badge&logo=target&logoColor=white" alt="Campus Network" />
-    <img src="https://img.shields.io/badge/Offline%20Mode-Built--in%20%E2%9A%A1-8B5CF6?style=for-the-badge&logo=powershell&logoColor=white" alt="Offline Mode" />
-    <img src="https://img.shields.io/badge/TUI-Charm%20Huh-F43F5E?style=for-the-badge&logo=terminal&logoColor=white" alt="Charm Huh" />
-    <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-F59E0B?style=for-the-badge" alt="License" /></a>
+    <img src="https://img.shields.io/badge/Offline%20Mode-Built--in%20%E2%9A%A1-F59E0B?style=for-the-badge&logo=powershell&logoColor=white" alt="Offline Mode" />
+    <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-gray?style=for-the-badge" alt="License" /></a>
   </p>
 
   <p align="center">
+    <a href="#-downloads--releases"><b>Downloads</b></a> •
     <a href="#-key-features"><b>Key Features</b></a> •
-    <a href="#-campus-network--offline-demo-mode"><b>Network & Offline Mode</b></a> •
-    <a href="#-quick-start"><b>Quick Start</b></a> •
-    <a href="#-terminal-walkthrough"><b>Walkthrough</b></a> •
+    <a href="#-terminal-walkthrough"><b>Terminal Walkthrough</b></a> •
+    <a href="#-campus-network--offline-demo-mode"><b>Network Modes</b></a> •
     <a href="#%EF%B8%8F-keyboard-shortcuts"><b>Shortcuts</b></a> •
-    <a href="#%EF%B8%8F-architecture--how-it-works"><b>Architecture</b></a> •
-    <a href="#-tech-stack"><b>Tech Stack</b></a>
+    <a href="#%EF%B8%8F-architecture--how-it-works"><b>Architecture</b></a>
   </p>
 
 </div>
 
 ---
 
+## 📦 Downloads & Releases
+
+Pre-compiled, ready-to-run releases are available for Windows, Linux, and macOS. **No Go installation required!**
+
+| Platform | Architecture | Download Package | Quick Launch |
+|:---|:---:|:---|:---|
+| 🪟 **Windows** | x86_64 / amd64 | [**`pranav-pyq-v2.0.0-windows-amd64.zip`**](https://github.com/pkpranav-projects/PRANAV-PYQ-FETCHER-AMRITA/releases/download/v2.0.0/pranav-pyq-v2.0.0-windows-amd64.zip) | Extract and double-click `run.bat` |
+| 🐧 **Linux** | x86_64 / amd64 | [**`pranav-pyq-v2.0.0-linux-amd64.tar.gz`**](https://github.com/pkpranav-projects/PRANAV-PYQ-FETCHER-AMRITA/releases/download/v2.0.0/pranav-pyq-v2.0.0-linux-amd64.tar.gz) | `tar -xzf ...` & `./pranav-pyq` |
+| 🍎 **macOS** | Apple Silicon (M1/M2/M3/M4) | [**`pranav-pyq-v2.0.0-darwin-arm64.tar.gz`**](https://github.com/pkpranav-projects/PRANAV-PYQ-FETCHER-AMRITA/releases/download/v2.0.0/pranav-pyq-v2.0.0-darwin-arm64.tar.gz) | `tar -xzf ...` & `./pranav-pyq` |
+| 🍎 **macOS** | Intel x86_64 | [**`pranav-pyq-v2.0.0-darwin-amd64.tar.gz`**](https://github.com/pkpranav-projects/PRANAV-PYQ-FETCHER-AMRITA/releases/download/v2.0.0/pranav-pyq-v2.0.0-darwin-amd64.tar.gz) | `tar -xzf ...` & `./pranav-pyq` |
+
+👉 View all releases and notes on the [**GitHub Releases Page**](https://github.com/pkpranav-projects/PRANAV-PYQ-FETCHER-AMRITA/releases).
+
+---
+
 ## 📖 Overview
 
-Amrita Vishwa Vidyapeetham stores its official Previous Year Question Papers (PYQs) within its internal **DSpace Digital Repository** (`dspace.amritanet.edu:8080`). Browsing this archive through a web browser is often slow, requires navigating multiple nested tables, and can be cumbersome right before examinations.
+Amrita Vishwa Vidyapeetham stores its official Previous Year Question Papers (PYQs) within its internal **DSpace Digital Repository** (`dspace.amritanet.edu:8080`). Browsing this archive through a web browser can be tedious and slow.
 
-**PRANAV PYQ FETCHER AMRITA** transforms the entire question paper retrieval process into an intuitive, keyboard-driven terminal application. With real-time network checks, fuzzy search filtering, offline exploration, and one-click PDF browser viewing or local downloading, finding exam papers is now instantaneous.
+**PRANAV PYQ FETCHER AMRITA** transforms the entire retrieval process into an intuitive, keyboard-driven terminal application. With real-time network checks, fuzzy search filtering, offline exploration, and one-click PDF browser viewing or local downloading, finding exam papers is instantaneous.
 
 ---
 
 ## ✨ Key Features
 
-- ⚡ **Automatic Campus Pre-Flight Check**: Pings the Amrita repository on launch to verify campus connectivity before attempting requests.
-- 🚀 **Offline Demo Mode**: Stuck at home without campus Wi-Fi or VPN? Launch Demo Mode to explore the full curriculum, test filters, and preview the workflow with simulated courses.
+- ⚡ **Automatic Campus Pre-Flight Check**: Pings `dspace.amritanet.edu:8080` on launch to verify campus network connectivity.
+- 🚀 **Offline Demo Mode**: Stuck at home without campus Wi-Fi or VPN? Launch Demo Mode to explore the full curriculum, test filters, and preview the workflow with simulated papers.
 - 🔍 **Instant Fuzzy Search (`/`)**: Simply tap `/` in any menu to type and filter subjects, semesters, or papers on the fly.
 - 🌐 **Seamless In-Browser Viewing**: Opens selected PDFs directly in your default web browser (Edge, Chrome, Brave, Firefox) using native OS handlers.
 - 📥 **Clean Local Downloads**: Easily save papers to your machine; all downloads are organized automatically into a clean `downloads/` directory.
 - ⬅️ **Smart Stack Navigation & Breadcrumbs**: Displays your exact location (e.g. `B.Tech CSE → Semester 4 → Periodical 1 → Operating Systems`) and lets you step back effortlessly without restarting.
 - 🎨 **Modern Terminal User Interface**: Styled with Charm's `huh` and `lipgloss` with custom ASCII banners, spinners, and vibrant color-coded states.
+
+---
+
+## 🖥️ Terminal Walkthrough
+
+### 1. Launching the App
+When you run `pranav-pyq`, the app displays the signature **PRANAV PYQ FETCHER** banner, performs the campus network check, and lists available academic programs:
+
+```text
+$ pranav-pyq
+
+  ____  ____     _    _   _    _    __     __
+ |  _ \|  _ \   / \  | \ | |  / \   \ \   / /
+ | |_) | |_) | / _ \ |  \| | / _ \   \ \ / / 
+ |  __/|  _ < / ___ \| |\  |/ ___ \   \ V /  
+ |_|   |_| \_/_/   \_\_| \_/_/   \_\   \_/   
+  ____  __   ______   _____ _____ _____ ____ _   _ _____ ____  
+ |  _ \ \ \ / / __ \ |  ___| ____|_   _/ ___| | | | ____|  _ \ 
+ | |_) | \ V / |  | || |_  |  _|   | || |   | |_| |  _| | |_) |
+ |  __/   | || |__| ||  _| | |___  | || |___|  _  | |___|  _ < 
+ |_|      |_| \___\_\|_|   |_____| |_| \____|_| |_|_____|_| \_\
+               === AMRITA UNIVERSITY EDITION ===
+
+✓ Connected to Amrita Network (dspace.amritanet.edu:8080)
+
+Available Courses
+  Agricultural Sciences
+  B.Tech
+  Communication
+  Integrated MSc & MA
+> MCA
+  MSW
+  M.Tech
+  Quit
+
+↑ up • ↓ down • / filter • enter submit
+```
+
+---
+
+### 2. Off-Campus Network Detection (Offline Demo Mode)
+If you're off-campus without VPN, the app gracefully catches it and offers **Offline Demo Mode**:
+
+```text
+╭──────────────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│  ⚠️  AMRITA CAMPUS NETWORK NOT DETECTED                                      │
+│                                                                              │
+│  The question paper repository (dspace.amritanet.edu:8080) is hosted on the  │
+│  Amrita intranet. Live fetching requires:                                    │
+│    1. Amrita Campus Wi-Fi, OR                                                │
+│    2. Amrita University VPN                                                  │
+│                                                                              │
+│  You can still explore the app right now using Demo Mode!                    │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+Select an option
+> 🚀 Launch Demo Mode (Browse sample courses & papers offline)
+  🔄 Try connecting live anyway
+  ❌ Quit
+```
+
+---
+
+### 3. Selecting Semesters & Assessments
+Navigate through semesters and assessment categories with full breadcrumbs:
+
+```text
+Selection(s):
+B.Tech Computer Science & Engineering → Semester 4
+
+Assessments
+> Periodical 1
+  Periodical 2
+  End Semester Examination
+  Back
+  Quit
+```
+
+---
+
+### 4. Viewing or Downloading Question Papers
+Choose whether to view the PDF directly in your browser or download it to your machine:
+
+```text
+Selection(s):
+B.Tech CSE → Sem 4 → End Semester → 19CSE202 Operating Systems
+
+Select Question Paper to view
+> 2023_Question_Paper_Solved
+  2022_Question_Paper
+  2021_Question_Paper
+  Back to Main Menu
+  Quit
+
+Choose Action
+> Open in Browser
+  Download PDF
+```
 
 ---
 
@@ -64,25 +177,9 @@ Because `dspace.amritanet.edu` is hosted on Amrita's private internal intranet, 
 | **At Home with VPN** | Connected to **Amrita GlobalProtect VPN** | 🟢 Live | Full access to real-time papers from anywhere in the world. |
 | **At Home / Mobile Data** | Off-campus network | 🟣 Demo Mode | **Offline Demo Mode** enabled! Browse sample courses, test filters, and test all app features. |
 
-> 💡 **Notice:** You never have to worry about crashing when opening the tool outside campus. If the intranet is unreachable, the app automatically gives you the choice to enter **Demo Mode** or retry!
-
 ---
 
-## 🚀 Quick Start
-
-### ⚡ Method 1: Ready-to-Run Binary (No Setup Needed!)
-
-If you are on Windows, you can launch the app immediately without installing Go:
-
-1. **Double-click:** Run [`run.bat`](run.bat) in the project folder.
-2. **Or run via Command Prompt / PowerShell:**
-   ```powershell
-   .\pranav-pyq.exe
-   ```
-
-### 🛠️ Method 2: Run from Source (Developers)
-
-Ensure you have [Golang](https://go.dev/dl/) (1.23+) installed:
+## 🚀 Running from Source (Developers)
 
 ```bash
 # Clone the repository
@@ -91,39 +188,12 @@ git clone https://github.com/pkpranav-projects/PRANAV-PYQ-FETCHER-AMRITA.git
 # Enter the directory
 cd PRANAV-PYQ-FETCHER-AMRITA
 
-# Run the app
+# Run directly
 go run main.go
+
+# Or build the binary
+go build -ldflags="-s -w" -o pranav-pyq.exe main.go
 ```
-
-### 🏷️ Check Version
-```powershell
-.\pranav-pyq.exe version
-# PRANAV PYQ FETCHER AMRITA v2.0.0
-```
-
----
-
-## 🖥️ Terminal Walkthrough
-
-<div align="center">
-  <img src="https://github.com/user-attachments/assets/148324a7-38fa-48d3-b53a-a292ce928254" alt="Main Menu" width="700" />
-  <p><i>1. Select Degree / Department</i></p>
-</div>
-
-<div align="center">
-  <img src="https://github.com/user-attachments/assets/f0a3051c-ff9a-4f7a-84b3-716682ab4ff6" alt="Semester and Exam Selection" width="700" />
-  <p><i>2. Select Semester and Exam Type (Periodical 1, Periodical 2, End Sem)</i></p>
-</div>
-
-<div align="center">
-  <img src="https://github.com/user-attachments/assets/dc8e80ce-73ae-4033-901a-d6ccbd387b2f" alt="Question Paper Selection" width="700" />
-  <p><i>3. Filter and select the exact Question Paper file</i></p>
-</div>
-
-<div align="center">
-  <img src="https://github.com/user-attachments/assets/b904263f-97c0-439f-9aa5-3c4f477683b6" alt="PDF In-Browser Display" width="700" />
-  <p><i>4. Question Paper automatically rendered in your default browser</i></p>
-</div>
 
 ---
 
@@ -134,7 +204,7 @@ go run main.go
 | **`↑` / `k`** | Move cursor up |
 | **`↓` / `j`** | Move cursor down |
 | **`Enter`** | Confirm selection |
-| **`/`** | Activate instant search filter |
+| **`/`** | Activate instant fuzzy search filter |
 | **`Back`** | Return to previous menu level |
 | **`Quit`** | Exit cleanly with animated spinner |
 
@@ -157,16 +227,9 @@ flowchart TD
     M4 --> M5["5. Question Paper Year & File"]
     
     M5 --> ACT{"User Action"}
-    ACT -->|"🌐 Open in Browser"| BROWSER["Executes OS Protocol (xdg-open / rundll32 / open)"]
+    ACT -->|"🌐 Open in Browser"| BROWSER["Executes OS Protocol (rundll32 / open / xdg-open)"]
     ACT -->|"📥 Download PDF"| DISK["Streams file into ./downloads/ folder"]
 ```
-
-### Scraping Engine
-The project uses the Go [`soup`](https://github.com/anaskhan96/soup) package to parse DSpace Manakin (XMLUI) DOM nodes:
-1. **Courses**: Scrapes `/xmlui/handle/123456789/16` parsing `<div class="artifact-title">`.
-2. **Semesters & Assessments**: Parses `div#aspect_artifactbrowser_CommunityViewer_div_community-view ul li`.
-3. **Subjects**: Extracted from `<div xmlns="http://di.tamu.edu/DRI/1.0/">`.
-4. **Files**: Queries `<div class="file-list"> <div class="file-wrapper">` to extract direct bitstream links.
 
 ---
 

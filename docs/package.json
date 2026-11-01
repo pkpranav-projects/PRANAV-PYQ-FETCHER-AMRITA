@@ -1,7 +1,7 @@
 {
-    "name": "amrita_pyq_docs",
-    "description": "Amrita PyQ Documentation Website",
-    "version": "0.0.1",
+    "name": "pranav_pyq_fetcher_amrita_docs",
+    "description": "PRANAV PYQ FETCHER AMRITA Documentation Website",
+    "version": "2.0.0",
     "type": "module",
     "scripts": {
         "dev": "vitepress dev",

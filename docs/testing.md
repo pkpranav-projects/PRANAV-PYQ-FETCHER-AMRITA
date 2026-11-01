@@ -1,27 +1,21 @@
-# Running unit tests for Amrita PYQ CLI Tool
+# Running Unit Tests for PRANAV PYQ FETCHER AMRITA
 
-## Run Unit Test
+## Run Unit Tests
 
-To run all the unit tests for this project use the following command:
+To run all unit tests across all packages:
 
 ```bash
 go test ./... -v
 ```
 
-You will be able to see the output and status for each unit test available.
+This tests the CLI commands, configurations, logo banner, HTML parsing, web client, and stack data structures.
 
-To run a unit test specific to a package, go to the package location and run:
+## Run Package-Specific Tests
 
-```bash
-go test -run "PACKAGE_NAME"
-```
-
-## Run Lint check
+To run tests for a specific package:
 
 ```bash
-golangci-lint run
+go test ./cmd/internal/requestclient -v
+go test ./cmd/internal/configs -v
+go test ./cmd/util/stack -v
 ```
-
-**Note:** This command will return an output only when it finds an error. Otherwise, no visible change occurs.
-
-Good Luck developing and testing the application!!
