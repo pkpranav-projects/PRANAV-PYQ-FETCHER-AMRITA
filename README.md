@@ -10,6 +10,7 @@
 
   <!-- Badges Shelf -->
   <p align="center">
+    <a href="https://pkpranav-projects.github.io/PRANAV-PYQ-FETCHER-AMRITA/"><img src="https://img.shields.io/badge/Documentation-Live%20Site-blueviolet?style=for-the-badge&logo=rocket" alt="Docs Site" /></a>
     <a href="https://golang.org"><img src="https://img.shields.io/badge/Language-Go%201.23+-00ADD8?style=for-the-badge&logo=go&logoColor=white" alt="Go Version" /></a>
     <img src="https://img.shields.io/badge/Version-v2.0.0-10B981?style=for-the-badge&logo=github&logoColor=white" alt="Version 2.0" />
     <img src="https://img.shields.io/badge/Platform-Windows%20%7C%20macOS%20%7C%20Linux-5865F2?style=for-the-badge&logo=linux&logoColor=white" alt="Cross Platform" />
