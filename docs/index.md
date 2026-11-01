@@ -3,62 +3,62 @@ layout: home
 
 hero:
     name: PRANAV PYQ FETCHER
-    text: Next-Gen Amrita PYQs Retrieval
-    tagline: An ultra-fast, keyboard-driven Terminal CLI tool to browse, preview, and download university exam papers.
+    text: Amrita University Question Paper Retrieval CLI
+    tagline: An ultra-fast, keyboard-driven terminal application to browse, preview, and download university exam papers.
     image:
         src: https://github.com/user-attachments/assets/44822d21-0e1d-4b3e-baa3-3450b5cc14fc
         alt: Amrita Vishwa Vidyapeetham Logo
     actions:
         - theme: brand
-          text: 🚀 Quick Start
+          text: Get Started ›
           link: /getting-started
         - theme: alt
-          text: 📦 Releases & Downloads
+          text: Releases & Binaries
           link: https://github.com/pkpranav-projects/PRANAV-PYQ-FETCHER-AMRITA/releases
         - theme: alt
-          text: 💻 View GitHub
+          text: GitHub Repository
           link: https://github.com/pkpranav-projects/PRANAV-PYQ-FETCHER-AMRITA
 
 features:
-    - icon: ⚡
+    - icon: ◈
       title: Automatic Pre-Flight Network Ping
       details: Pings the internal Amrita repository on launch to detect campus Wi-Fi or VPN connectivity automatically.
-    - icon: 🚀
+    - icon: ⬡
       title: Built-in Offline Demo Mode
       details: Stuck at home? Browse sample courses, test fuzzy search, and explore simulated question papers offline.
-    - icon: 🔍
+    - icon: ⌕
       title: Instant Search Filter (/)
       details: Tap / in any menu to type and filter subjects, semesters, and question papers in milliseconds.
-    - icon: 🌐
+    - icon: ⊞
       title: Native Browser PDF Preview
       details: Seamlessly launches question paper PDFs inside Microsoft Edge, Chrome, Firefox, or Brave.
-    - icon: 📥
+    - icon: ⤓
       title: Organized Local Downloads
       details: Automatically creates and routes PDF downloads into a clean downloads/ folder.
-    - icon: ⬅️
+    - icon: ⇄
       title: Interactive Stack Breadcrumbs
       details: Keep track of your exact path (e.g. B.Tech CSE → Sem 4 → End Sem) and step backwards effortlessly.
 ---
 
 <div class="custom-home-content">
 
-## 🌟 The Ultimate Exam Prep Companion
+## Terminal-First Architecture
 
 Navigating university web portals right before exams shouldn't be stressful. **PRANAV PYQ FETCHER AMRITA** turns the slow, multi-click process of navigating the DSpace archive into an intuitive, keyboard-first terminal workflow.
 
-### 📶 Network Connectivity Matrix
+### Network Connectivity Matrix
 
 Because `dspace.amritanet.edu` is hosted on Amrita's private internal intranet, live fetching requires connectivity to the university network:
 
-| Environment | Connection Mode | Status | Supported Features |
+| Environment | Connection Mode | Network Status | Supported Capabilities |
 |:---|:---|:---:|:---|
-| **At Campus** | Connected to **Amrita Wi-Fi** | 🟢 Live | Direct live fetching, streaming & downloading from university archives. |
-| **At Home with VPN** | Connected to **Amrita GlobalProtect VPN** | 🟢 Live | Full access to real-time question papers from anywhere in the world. |
-| **At Home / Mobile Data** | Off-campus network | 🟣 Demo Mode | **Offline Demo Mode** enabled! Browse sample courses, test filters, and test all app features. |
+| **At Campus** | Connected to **Amrita Wi-Fi** | ● Connected | Direct live fetching, streaming & downloading from university archives. |
+| **At Home with VPN** | Connected to **Amrita GlobalProtect VPN** | ● Connected | Full access to real-time question papers from anywhere in the world. |
+| **At Home / Mobile Data** | Off-campus network | ○ Standalone Demo | **Offline Demo Mode** enabled. Browse sample courses, test filters, and explore all app features. |
 
 ---
 
-### 📦 Quick Downloads
+### Binary Releases & Packages
 
 Pre-compiled, ready-to-run releases are available for Windows, Linux, and macOS without requiring any Go installation:
 
@@ -69,7 +69,7 @@ Pre-compiled, ready-to-run releases are available for Windows, Linux, and macOS 
 
 ---
 
-### ⌨️ Navigation Cheatsheet
+### Keybindings & Controls
 
 | Key | Function |
 |:---:|:---|
@@ -82,13 +82,13 @@ Pre-compiled, ready-to-run releases are available for Windows, Linux, and macOS 
 
 ---
 
-### 🏗️ How It Works
+### Execution Lifecycle
 
 ```mermaid
 flowchart TD
-    A["🚀 Launch: pranav-pyq"] --> B{"Campus Network Pre-flight Check"}
-    B -->|"Campus Wi-Fi / VPN"| C["🟢 Live Mode (dspace.amritanet.edu)"]
-    B -->|"Off-Campus"| D["🟣 Offline Demo Mode (Mock Engine)"]
+    A["pranav-pyq launch"] --> B{"Campus Network Pre-flight Check"}
+    B -->|"Campus Wi-Fi / VPN"| C["Live Mode: dspace.amritanet.edu"]
+    B -->|"Off-Campus"| D["Offline Demo Engine"]
     
     C --> M1["1. Course Selection (B.Tech, MCA, M.Tech, etc.)"]
     D --> M1
@@ -99,8 +99,8 @@ flowchart TD
     M4 --> M5["5. Question Paper Year & File"]
     
     M5 --> ACT{"User Action"}
-    ACT -->|"🌐 Open in Browser"| BROWSER["Executes OS Protocol (rundll32 / open / xdg-open)"]
-    ACT -->|"📥 Download PDF"| DISK["Streams file into ./downloads/ folder"]
+    ACT -->|"Open in Browser"| BROWSER["OS Protocol Dispatch (rundll32 / open / xdg-open)"]
+    ACT -->|"Download PDF"| DISK["Stream to ./downloads/"]
 ```
 
 </div>

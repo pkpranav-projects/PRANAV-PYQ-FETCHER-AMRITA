@@ -1,126 +1,244 @@
 /**
- * Custom styling for PRANAV PYQ FETCHER AMRITA documentation
+ * Professional Software Documentation Styling
+ * Clean, technical, structured aesthetic (Inspired by Linear, Vercel, and GitHub Docs)
  */
 
 :root {
   --vp-c-brand-1: #0284c7;
   --vp-c-brand-2: #0369a1;
   --vp-c-brand-3: #075985;
-  --vp-c-brand-soft: rgba(2, 132, 199, 0.12);
+  --vp-c-brand-soft: rgba(2, 132, 199, 0.08);
 
   --vp-home-hero-name-color: transparent;
-  --vp-home-hero-name-background: -webkit-linear-gradient(120deg, #0284c7 30%, #6366f1);
-  --vp-home-hero-image-filter: drop-shadow(0 0 40px rgba(2, 132, 199, 0.25));
+  --vp-home-hero-name-background: linear-gradient(135deg, #0f172a 30%, #334155 100%);
+  --vp-home-hero-image-filter: drop-shadow(0 4px 20px rgba(0, 0, 0, 0.08));
 
   --vp-c-bg: transparent;
-  --vp-c-bg-alt: rgba(241, 245, 249, 0.7);
-  --vp-c-bg-elv: rgba(255, 255, 255, 0.85);
+  --vp-c-bg-alt: #f8fafc;
+  --vp-c-bg-elv: #ffffff;
 
-  --vp-nav-bg-color: rgba(255, 255, 255, 0.75);
-  --vp-sidebar-bg-color: rgba(248, 250, 252, 0.82);
+  --vp-nav-bg-color: rgba(255, 255, 255, 0.88);
+  --vp-sidebar-bg-color: rgba(248, 250, 252, 0.92);
+
+  --vp-c-text-1: #0f172a;
+  --vp-c-text-2: #475569;
+  --vp-c-text-3: #94a3b8;
 }
 
 :root.dark {
-  --vp-c-brand-1: #01fac6;
-  --vp-c-brand-2: #00d9ab;
-  --vp-c-brand-3: #00b58e;
-  --vp-c-brand-soft: rgba(1, 250, 198, 0.14);
+  --vp-c-brand-1: #38bdf8;
+  --vp-c-brand-2: #0ea5e9;
+  --vp-c-brand-3: #0284c7;
+  --vp-c-brand-soft: rgba(56, 189, 248, 0.10);
 
   --vp-home-hero-name-color: transparent;
-  --vp-home-hero-name-background: -webkit-linear-gradient(120deg, #01fac6 30%, #a855f7);
-  --vp-home-hero-image-filter: drop-shadow(0 0 50px rgba(1, 250, 198, 0.35));
+  --vp-home-hero-name-background: linear-gradient(180deg, #ffffff 0%, #cbd5e1 100%);
+  --vp-home-hero-image-filter: drop-shadow(0 8px 30px rgba(0, 0, 0, 0.5));
 
   --vp-c-bg: transparent;
-  --vp-c-bg-alt: rgba(15, 23, 42, 0.6);
-  --vp-c-bg-elv: rgba(15, 23, 42, 0.8);
+  --vp-c-bg-alt: #0a0e17;
+  --vp-c-bg-elv: #0f1422;
 
-  --vp-nav-bg-color: rgba(10, 15, 26, 0.75);
-  --vp-sidebar-bg-color: rgba(8, 12, 22, 0.82);
+  --vp-nav-bg-color: rgba(10, 14, 23, 0.88);
+  --vp-sidebar-bg-color: rgba(8, 12, 20, 0.92);
+
+  --vp-c-text-1: #f8fafc;
+  --vp-c-text-2: #94a3b8;
+  --vp-c-text-3: #64748b;
 }
 
-/* Glassmorphism on Top Nav */
+/* Minimalist Technical Navigation */
 .VPNav {
-  backdrop-filter: blur(16px) saturate(180%);
-  -webkit-backdrop-filter: blur(16px) saturate(180%);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 :root:not(.dark) .VPNav {
   border-bottom: 1px solid rgba(15, 23, 42, 0.08);
 }
 
-/* Glassmorphism on Sidebar */
+/* Structured Sidebar */
 .VPSidebar {
-  backdrop-filter: blur(16px) saturate(180%);
-  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border-right: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 :root:not(.dark) .VPSidebar {
-  border-right: 1px solid rgba(15, 23, 42, 0.06);
+  border-right: 1px solid rgba(15, 23, 42, 0.08);
 }
 
-/* Glassmorphism and glow on Feature Cards */
+/* Professional Engineering Feature Cards (Eliminates AI-template frosted glass & neon glow) */
 .VPFeature {
-  background: rgba(255, 255, 255, 0.7) !important;
-  backdrop-filter: blur(12px) !important;
-  -webkit-backdrop-filter: blur(12px) !important;
-  border: 1px solid rgba(15, 23, 42, 0.08) !important;
-  border-radius: 16px !important;
-  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease !important;
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 8px !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04) !important;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease !important;
+  padding: 24px !important;
 }
 
 :root.dark .VPFeature {
-  background: rgba(15, 23, 42, 0.6) !important;
-  border: 1px solid rgba(1, 250, 198, 0.15) !important;
+  background: #0d121f !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3) !important;
 }
 
 .VPFeature:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.12);
+  transform: translateY(-2px) !important;
+  border-color: #cbd5e1 !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06) !important;
 }
 
 :root.dark .VPFeature:hover {
-  border-color: rgba(1, 250, 198, 0.45) !important;
-  box-shadow: 0 16px 36px rgba(1, 250, 198, 0.15);
+  border-color: rgba(255, 255, 255, 0.22) !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4) !important;
 }
 
-/* Markdown tables with modern rounded glass look */
-.vp-doc table {
-  background: rgba(255, 255, 255, 0.65);
-  backdrop-filter: blur(8px);
-  border-radius: 12px;
-  overflow: hidden;
-  border: 1px solid rgba(15, 23, 42, 0.1);
-}
-
-:root.dark .vp-doc table {
-  background: rgba(15, 23, 42, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-/* Code blocks */
-.vp-doc div[class*='language-'] {
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-}
-
-:root:not(.dark) .vp-doc div[class*='language-'] {
-  border: 1px solid rgba(15, 23, 42, 0.12);
-}
-
-/* Buttons on Hero */
-.VPButton.brand {
-  border-radius: 9999px !important;
+/* Technical Icon Badge */
+.VPFeature .icon {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 38px !important;
+  height: 38px !important;
+  border-radius: 6px !important;
+  background: rgba(2, 132, 199, 0.08) !important;
+  border: 1px solid rgba(2, 132, 199, 0.18) !important;
+  color: #0284c7 !important;
+  font-size: 16px !important;
   font-weight: 700 !important;
-  letter-spacing: 0.02em;
-  box-shadow: 0 4px 20px rgba(1, 250, 198, 0.3);
-  transition: all 0.2s ease;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace !important;
+  margin-bottom: 16px !important;
+}
+
+:root.dark .VPFeature .icon {
+  background: rgba(56, 189, 248, 0.08) !important;
+  border: 1px solid rgba(56, 189, 248, 0.20) !important;
+  color: #38bdf8 !important;
+}
+
+.VPFeature h2 {
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.01em !important;
+  margin-bottom: 8px !important;
+}
+
+:root.dark .VPFeature h2 {
+  color: #f8fafc !important;
+}
+
+.VPFeature p {
+  font-size: 14px !important;
+  line-height: 1.6 !important;
+  color: #64748b !important;
+}
+
+:root.dark .VPFeature p {
+  color: #94a3b8 !important;
+}
+
+/* Clean Technical Buttons (No round pills, no AI-style blur glows) */
+.VPButton {
+  border-radius: 6px !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  letter-spacing: -0.01em !important;
+  padding: 8px 18px !important;
+  transition: all 0.15s ease !important;
+}
+
+.VPButton.brand {
+  background-color: #0284c7 !important;
+  border: 1px solid #0369a1 !important;
+  color: #ffffff !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05) !important;
+}
+
+:root.dark .VPButton.brand {
+  background-color: #0284c7 !important;
+  border: 1px solid #38bdf8 !important;
+  color: #ffffff !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3) !important;
+}
+
+.VPButton.brand:hover {
+  background-color: #0369a1 !important;
+}
+
+:root.dark .VPButton.brand:hover {
+  background-color: #0ea5e9 !important;
 }
 
 .VPButton.alt {
-  border-radius: 9999px !important;
-  font-weight: 600 !important;
-  backdrop-filter: blur(8px);
+  background: transparent !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #0f172a !important;
+}
+
+:root.dark .VPButton.alt {
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  color: #e2e8f0 !important;
+}
+
+.VPButton.alt:hover {
+  border-color: #94a3b8 !important;
+  background: rgba(0, 0, 0, 0.03) !important;
+}
+
+:root.dark .VPButton.alt:hover {
+  border-color: rgba(255, 255, 255, 0.3) !important;
+  background: rgba(255, 255, 255, 0.04) !important;
+}
+
+/* Precision Technical Documentation Tables */
+.vp-doc table {
+  background: #ffffff;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid #e2e8f0;
+  width: 100%;
+}
+
+:root.dark .vp-doc table {
+  background: #0d121f;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.vp-doc th {
+  background: #f8fafc;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #475569;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+:root.dark .vp-doc th {
+  background: #131a29;
+  color: #94a3b8;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.vp-doc td {
+  border-bottom: 1px solid #f1f5f9;
+}
+
+:root.dark .vp-doc td {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Technical Code Blocks */
+.vp-doc div[class*='language-'] {
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+:root:not(.dark) .vp-doc div[class*='language-'] {
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
 }
