@@ -1,0 +1,126 @@
+/**
+ * Custom styling for PRANAV PYQ FETCHER AMRITA documentation
+ */
+
+:root {
+  --vp-c-brand-1: #0284c7;
+  --vp-c-brand-2: #0369a1;
+  --vp-c-brand-3: #075985;
+  --vp-c-brand-soft: rgba(2, 132, 199, 0.12);
+
+  --vp-home-hero-name-color: transparent;
+  --vp-home-hero-name-background: -webkit-linear-gradient(120deg, #0284c7 30%, #6366f1);
+  --vp-home-hero-image-filter: drop-shadow(0 0 40px rgba(2, 132, 199, 0.25));
+
+  --vp-c-bg: transparent;
+  --vp-c-bg-alt: rgba(241, 245, 249, 0.7);
+  --vp-c-bg-elv: rgba(255, 255, 255, 0.85);
+
+  --vp-nav-bg-color: rgba(255, 255, 255, 0.75);
+  --vp-sidebar-bg-color: rgba(248, 250, 252, 0.82);
+}
+
+:root.dark {
+  --vp-c-brand-1: #01fac6;
+  --vp-c-brand-2: #00d9ab;
+  --vp-c-brand-3: #00b58e;
+  --vp-c-brand-soft: rgba(1, 250, 198, 0.14);
+
+  --vp-home-hero-name-color: transparent;
+  --vp-home-hero-name-background: -webkit-linear-gradient(120deg, #01fac6 30%, #a855f7);
+  --vp-home-hero-image-filter: drop-shadow(0 0 50px rgba(1, 250, 198, 0.35));
+
+  --vp-c-bg: transparent;
+  --vp-c-bg-alt: rgba(15, 23, 42, 0.6);
+  --vp-c-bg-elv: rgba(15, 23, 42, 0.8);
+
+  --vp-nav-bg-color: rgba(10, 15, 26, 0.75);
+  --vp-sidebar-bg-color: rgba(8, 12, 22, 0.82);
+}
+
+/* Glassmorphism on Top Nav */
+.VPNav {
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+:root:not(.dark) .VPNav {
+  border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+}
+
+/* Glassmorphism on Sidebar */
+.VPSidebar {
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+:root:not(.dark) .VPSidebar {
+  border-right: 1px solid rgba(15, 23, 42, 0.06);
+}
+
+/* Glassmorphism and glow on Feature Cards */
+.VPFeature {
+  background: rgba(255, 255, 255, 0.7) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border: 1px solid rgba(15, 23, 42, 0.08) !important;
+  border-radius: 16px !important;
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease !important;
+}
+
+:root.dark .VPFeature {
+  background: rgba(15, 23, 42, 0.6) !important;
+  border: 1px solid rgba(1, 250, 198, 0.15) !important;
+}
+
+.VPFeature:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.12);
+}
+
+:root.dark .VPFeature:hover {
+  border-color: rgba(1, 250, 198, 0.45) !important;
+  box-shadow: 0 16px 36px rgba(1, 250, 198, 0.15);
+}
+
+/* Markdown tables with modern rounded glass look */
+.vp-doc table {
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(8px);
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(15, 23, 42, 0.1);
+}
+
+:root.dark .vp-doc table {
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Code blocks */
+.vp-doc div[class*='language-'] {
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+:root:not(.dark) .vp-doc div[class*='language-'] {
+  border: 1px solid rgba(15, 23, 42, 0.12);
+}
+
+/* Buttons on Hero */
+.VPButton.brand {
+  border-radius: 9999px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.02em;
+  box-shadow: 0 4px 20px rgba(1, 250, 198, 0.3);
+  transition: all 0.2s ease;
+}
+
+.VPButton.alt {
+  border-radius: 9999px !important;
+  font-weight: 600 !important;
+  backdrop-filter: blur(8px);
+}
