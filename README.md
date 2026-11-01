@@ -20,6 +20,7 @@
   </p>
 
   <p align="center">
+    <a href="https://pkpranav-projects.github.io/PRANAV-PYQ-FETCHER-AMRITA/"><b>🌐 Documentation Website</b></a> •
     <a href="#-downloads--releases"><b>Downloads</b></a> •
     <a href="#-key-features"><b>Key Features</b></a> •
     <a href="#-terminal-walkthrough"><b>Terminal Walkthrough</b></a> •
