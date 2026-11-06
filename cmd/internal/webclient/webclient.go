@@ -159,15 +159,18 @@ func getDemoHTML(url string) string {
 	case strings.Contains(url, "16") || url == configs.COURSE_LIST_URL:
 		return `<html><body>
 			<div id="aspect_artifactbrowser_CommunityViewer_div_community-view">
-				<div class="artifact-title"><span>B.Tech Computer Science & Engineering</span><a href="/xmlui/handle/123456789/btech_cse"></a></div>
-				<div class="artifact-title"><span>B.Tech Artificial Intelligence</span><a href="/xmlui/handle/123456789/btech_ai"></a></div>
-				<div class="artifact-title"><span>B.Tech Electronics & Communication</span><a href="/xmlui/handle/123456789/btech_ece"></a></div>
+				<div class="artifact-title"><span>B.Tech Cyber Security (CYS)</span><a href="/xmlui/handle/123456789/btech_cys"></a></div>
+				<div class="artifact-title"><span>B.Tech Computer Science & Engineering (CSE)</span><a href="/xmlui/handle/123456789/btech_cse"></a></div>
+				<div class="artifact-title"><span>B.Tech Electronics & Communication (ECE)</span><a href="/xmlui/handle/123456789/btech_ece"></a></div>
+				<div class="artifact-title"><span>B.Tech Artificial Intelligence (AIE)</span><a href="/xmlui/handle/123456789/btech_ai"></a></div>
+				<div class="artifact-title"><span>B.Tech Electrical & Electronics (EEE)</span><a href="/xmlui/handle/123456789/btech_eee"></a></div>
+				<div class="artifact-title"><span>B.Tech Mechanical Engineering (MECH)</span><a href="/xmlui/handle/123456789/btech_mech"></a></div>
 				<div class="artifact-title"><span>Master of Computer Applications (MCA)</span><a href="/xmlui/handle/123456789/mca"></a></div>
 				<div class="artifact-title"><span>M.Tech Computer Science</span><a href="/xmlui/handle/123456789/mtech_cse"></a></div>
 			</div>
 		</body></html>`
 
-	case strings.Contains(url, "btech") || strings.Contains(url, "mca") || strings.Contains(url, "mtech"):
+	case strings.Contains(url, "btech") || strings.Contains(url, "cys") || strings.Contains(url, "cse") || strings.Contains(url, "ece") || strings.Contains(url, "mca") || strings.Contains(url, "mtech"):
 		return `<html><body>
 			<div id="aspect_artifactbrowser_CommunityViewer_div_community-view">
 				<ul>
@@ -177,6 +180,8 @@ func getDemoHTML(url string) string {
 					<li><a href="/xmlui/handle/123456789/sem4"><span>Semester 4</span></a></li>
 					<li><a href="/xmlui/handle/123456789/sem5"><span>Semester 5</span></a></li>
 					<li><a href="/xmlui/handle/123456789/sem6"><span>Semester 6</span></a></li>
+					<li><a href="/xmlui/handle/123456789/sem7"><span>Semester 7</span></a></li>
+					<li><a href="/xmlui/handle/123456789/sem8"><span>Semester 8</span></a></li>
 				</ul>
 			</div>
 		</body></html>`
@@ -196,11 +201,12 @@ func getDemoHTML(url string) string {
 		return `<html><body>
 			<div xmlns="http://di.tamu.edu/DRI/1.0/">
 				<ul>
+					<li><a href="/xmlui/handle/123456789/subj_cys201">19CYS201 - Foundations of Cyber Security</a></li>
+					<li><a href="/xmlui/handle/123456789/subj_cys202">19CYS202 - Cryptography and Network Security</a></li>
 					<li><a href="/xmlui/handle/123456789/subj_dsa">19CSE201 - Data Structures & Algorithms</a></li>
 					<li><a href="/xmlui/handle/123456789/subj_os">19CSE202 - Operating Systems</a></li>
 					<li><a href="/xmlui/handle/123456789/subj_dbms">19CSE203 - Database Management Systems</a></li>
-					<li><a href="/xmlui/handle/123456789/subj_toc">19CSE204 - Theory of Computation</a></li>
-					<li><a href="/xmlui/handle/123456789/subj_cn">19CSE205 - Computer Networks</a></li>
+					<li><a href="/xmlui/handle/123456789/subj_cn">19CSE301 - Computer Networks</a></li>
 				</ul>
 			</div>
 		</body></html>`
@@ -209,16 +215,24 @@ func getDemoHTML(url string) string {
 		return `<html><body>
 			<div class="file-list">
 				<div class="file-wrapper">
-					<div><a href="/xmlui/bitstream/handle/123456789/demo_2023.pdf"></a></div>
-					<div><div><span title="ignored"></span><span title="2023_Question_Paper_Solved"></span></div></div>
+					<div><a href="/xmlui/bitstream/handle/123456789/demo_2023_endsem.pdf"></a></div>
+					<div><div><span title="ignored"></span><span title="2023_End_Semester_Examination_Solved"></span></div></div>
 				</div>
 				<div class="file-wrapper">
-					<div><a href="/xmlui/bitstream/handle/123456789/demo_2022.pdf"></a></div>
-					<div><div><span title="ignored"></span><span title="2022_Question_Paper"></span></div></div>
+					<div><a href="/xmlui/bitstream/handle/123456789/demo_2023_p2.pdf"></a></div>
+					<div><div><span title="ignored"></span><span title="2023_Periodical_2"></span></div></div>
 				</div>
 				<div class="file-wrapper">
-					<div><a href="/xmlui/bitstream/handle/123456789/demo_2021.pdf"></a></div>
-					<div><div><span title="ignored"></span><span title="2021_Question_Paper"></span></div></div>
+					<div><a href="/xmlui/bitstream/handle/123456789/demo_2023_p1.pdf"></a></div>
+					<div><div><span title="ignored"></span><span title="2023_Periodical_1"></span></div></div>
+				</div>
+				<div class="file-wrapper">
+					<div><a href="/xmlui/bitstream/handle/123456789/demo_2022_endsem.pdf"></a></div>
+					<div><div><span title="ignored"></span><span title="2022_End_Semester_Examination"></span></div></div>
+				</div>
+				<div class="file-wrapper">
+					<div><a href="/xmlui/bitstream/handle/123456789/demo_2021_endsem.pdf"></a></div>
+					<div><div><span title="ignored"></span><span title="2021_End_Semester_Examination"></span></div></div>
 				</div>
 			</div>
 		</body></html>`

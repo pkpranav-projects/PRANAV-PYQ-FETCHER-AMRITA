@@ -58,20 +58,23 @@ Amrita Vishwa Vidyapeetham stores its official Previous Year Question Papers (PY
 
 ## ✨ Key Features
 
+- 🛡️ **Direct Course & Branch Select**: Instantly pick from top branches including **Cyber Security (`CYS`)**, **Computer Science (`CSE`)**, **Electronics (`ECE`)**, **Artificial Intelligence (`AIE`)**, **Electrical (`EEE`)**, **Mechanical (`MECH`)**, **`MCA`**, and **`M.Tech`**, or browse the full raw DSpace directory.
+- 📚 **Subject-First Workflow**: Browse all subjects mapped to your branch (e.g., *19CYS202 - Cryptography and Network Security*) with real-time fuzzy search (`/`) before viewing papers.
+- 📥 **Bulk "Download ALL Papers"**: Save every question paper for your chosen subject in a single action with real-time progress indicators into organized subdirectories.
 - ⚡ **Automatic Campus Pre-Flight Check**: Pings `dspace.amritanet.edu:8080` on launch to verify campus network connectivity.
 - 🚀 **Offline Demo Mode**: Stuck at home without campus Wi-Fi or VPN? Launch Demo Mode to explore the full curriculum, test filters, and preview the workflow with simulated papers.
-- 🔍 **Instant Fuzzy Search (`/`)**: Simply tap `/` in any menu to type and filter subjects, semesters, or papers on the fly.
+- 🔍 **Instant Fuzzy Search (`/`)**: Simply tap `/` in any menu to type and filter subjects, branches, or papers on the fly.
 - 🌐 **Seamless In-Browser Viewing**: Opens selected PDFs directly in your default web browser (Edge, Chrome, Brave, Firefox) using native OS handlers.
-- 📥 **Clean Local Downloads**: Easily save papers to your machine; all downloads are organized automatically into a clean `downloads/` directory.
-- ⬅️ **Smart Stack Navigation & Breadcrumbs**: Displays your exact location (e.g. `B.Tech CSE → Semester 4 → Periodical 1 → Operating Systems`) and lets you step back effortlessly without restarting.
+- 📁 **Organized Local Downloads**: Automatically structures downloads into clean folders like `downloads/CYS/19CYS202/`.
+- ⬅️ **Smart Stack Navigation & Breadcrumbs**: Displays your exact location (e.g. `CYS → 19CYS202 Cryptography and Network Security`) and lets you step back effortlessly without restarting.
 - 🎨 **Modern Terminal User Interface**: Styled with Charm's `huh` and `lipgloss` with custom ASCII banners, spinners, and vibrant color-coded states.
 
 ---
 
 ## 🖥️ Terminal Walkthrough
 
-### 1. Launching the App
-When you run `pranav-pyq`, the app displays the signature **PRANAV PYQ FETCHER** banner, performs the campus network check, and lists available academic programs:
+### 1. Launching & Course / Branch Selection
+When you run `pranav-pyq`, the app performs the campus network check and lets you pick your engineering branch directly:
 
 ```text
 $ pranav-pyq
@@ -88,82 +91,79 @@ $ pranav-pyq
  |_|      |_| \___\_\|_|   |_____| |_| \____|_| |_|_____|_| \_\
                === AMRITA UNIVERSITY EDITION ===
 
-✓ Connected to Amrita Network (dspace.amritanet.edu:8080)
-
-Available Courses
-  Agricultural Sciences
-  B.Tech
-  Communication
-  Integrated MSc & MA
-> MCA
-  MSW
-  M.Tech
-  Quit
-
-↑ up • ↓ down • / filter • enter submit
+Select Course / Branch (Press '/' to search)
+> CYS    │ Cyber Security
+  CSE    │ Computer Science & Engineering
+  ECE    │ Electronics & Communication
+  AIE    │ Artificial Intelligence
+  EEE    │ Electrical & Electronics
+  MECH   │ Mechanical Engineering
+  MCA    │ Master of Computer Applications
+  MTECH  │ M.Tech Computer Science
+  📂     │ Browse Full DSpace Directory (Semester by Semester)
+  ❌     │ Quit
 ```
 
 ---
 
-### 2. Off-Campus Network Detection (Offline Demo Mode)
-If you're off-campus without VPN, the app gracefully catches it and offers **Offline Demo Mode**:
+### 2. Choosing Your Subject
+Select your subject from the curated branch catalog (or tap `/` to filter):
 
 ```text
-╭──────────────────────────────────────────────────────────────────────────────╮
-│                                                                              │
-│  ⚠️  AMRITA CAMPUS NETWORK NOT DETECTED                                      │
-│                                                                              │
-│  The question paper repository (dspace.amritanet.edu:8080) is hosted on the  │
-│  Amrita intranet. Live fetching requires:                                    │
-│    1. Amrita Campus Wi-Fi, OR                                                │
-│    2. Amrita University VPN                                                  │
-│                                                                              │
-│  You can still explore the app right now using Demo Mode!                    │
-│                                                                              │
-╰──────────────────────────────────────────────────────────────────────────────╯
+Selection(s):
+CYS (Cyber Security)
 
-Select an option
-> 🚀 Launch Demo Mode (Browse sample courses & papers offline)
-  🔄 Try connecting live anyway
+Select Subject for CYS (Press '/' to filter)
+  19CYS201   │ Foundations of Cyber Security
+> 19CYS202   │ Cryptography and Network Security
+  19CYS203   │ Operating Systems and System Security
+  19CYS204   │ Data Structures and Algorithms
+  19CYS205   │ Computer Networks and Protocols
+  19CYS301   │ Secure Coding and Software Security
+  19CYS302   │ Digital Forensics and Incident Response
+  🔙 Back to Courses
   ❌ Quit
 ```
 
 ---
 
-### 3. Selecting Semesters & Assessments
-Navigate through semesters and assessment categories with full breadcrumbs:
+### 3. Displaying Papers & "Download ALL Papers"
+View all question papers for the chosen subject and download them all in bulk:
 
 ```text
 Selection(s):
-B.Tech Computer Science & Engineering → Semester 4
+CYS → 19CYS202 Cryptography and Network Security
 
-Assessments
-> Periodical 1
-  Periodical 2
-  End Semester Examination
-  Back
-  Quit
+Papers for 19CYS202: Cryptography and Network Security
+> 📥 Download ALL Papers (8 available)
+  2023 - End Semester Examination (Solved)
+  2023 - Periodical Examination 2 (P2)
+  2023 - Periodical Examination 1 (P1)
+  2022 - End Semester Examination
+  2022 - Periodical Examination 2 (P2)
+  2022 - Periodical Examination 1 (P1)
+  2021 - End Semester Examination
+  2020 - End Semester Examination
+  🔙 Back to Subjects
+  🏠 Main Menu
+  ❌ Quit
 ```
 
----
-
-### 4. Viewing or Downloading Question Papers
-Choose whether to view the PDF directly in your browser or download it to your machine:
+Selecting **📥 Download ALL Papers** starts an automated bulk download with real-time file-by-file progress:
 
 ```text
-Selection(s):
-B.Tech CSE → Sem 4 → End Semester → 19CSE202 Operating Systems
+📥 Bulk Downloading 8 question paper(s) into ./downloads/CYS/19CYS202...
 
-Select Question Paper to view
-> 2023_Question_Paper_Solved
-  2022_Question_Paper
-  2021_Question_Paper
-  Back to Main Menu
-  Quit
+  [1/8] Downloading 2023 - End Semester Examination (Solved)... ✓ Saved
+  [2/8] Downloading 2023 - Periodical Examination 2 (P2)... ✓ Saved
+  [3/8] Downloading 2023 - Periodical Examination 1 (P1)... ✓ Saved
+  [4/8] Downloading 2022 - End Semester Examination... ✓ Saved
+  [5/8] Downloading 2022 - Periodical Examination 2 (P2)... ✓ Saved
+  [6/8] Downloading 2022 - Periodical Examination 1 (P1)... ✓ Saved
+  [7/8] Downloading 2021 - End Semester Examination... ✓ Saved
+  [8/8] Downloading 2020 - End Semester Examination... ✓ Saved
 
-Choose Action
-> Open in Browser
-  Download PDF
+✓ Bulk Download Complete! All 8 papers saved in ./downloads/CYS/19CYS202
 ```
 
 ---

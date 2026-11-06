@@ -24,12 +24,13 @@ hero:
 
 ## Core Capabilities
 
-- **Automatic Pre-Flight Network Ping** &mdash; Automatically tests socket connectivity to `dspace.amritanet.edu:8080` on application launch, detecting whether you are on campus Wi-Fi or VPN without any manual configuration.
-- **Built-in Offline Demo Mode** &mdash; Browse sample courses, test fuzzy search, and explore simulated question papers offline when off-campus.
-- **Instant Search Filter (`/`)** &mdash; Tap `/` in any menu to type and filter subjects, semesters, and question papers in milliseconds.
+- **Direct Branch & Course Selection** &mdash; Select directly from top branches like Cyber Security (`CYS`), Computer Science (`CSE`), Electronics (`ECE`), Artificial Intelligence (`AIE`), Electrical (`EEE`), Mechanical (`MECH`), `MCA`, and `M.Tech`, or explore the full DSpace archive.
+- **Subject-First Exploration** &mdash; Pick your subject directly from an extensive curriculum catalog with real-time fuzzy search (`/`) before viewing papers.
+- **Bulk "Download ALL Papers"** &mdash; Download every question paper for a chosen subject or semester in a single click with real-time progress indicators into organized folders.
+- **Automatic Pre-Flight Network Ping** &mdash; Automatically tests socket connectivity to `dspace.amritanet.edu:8080` on launch, detecting campus Wi-Fi or VPN without any manual configuration.
+- **Built-in Offline Demo Mode** &mdash; Browse courses, test fuzzy search, and explore simulated question papers offline when off-campus.
 - **Native Browser PDF Preview** &mdash; Seamlessly launches question paper PDFs inside your default browser (Microsoft Edge, Chrome, Firefox, Brave) for high-fidelity viewing.
-- **Organized Local Downloads** &mdash; Automatically creates and routes PDF downloads into a clean, dedicated `downloads/` directory.
-- **Interactive Stack Breadcrumbs** &mdash; Keep track of your exact navigation path (e.g. `B.Tech CSE` &rarr; `Sem 4` &rarr; `End Sem`) and step backwards effortlessly.
+- **Organized Local Downloads** &mdash; Automatically organizes downloads into structured directories like `downloads/CYS/19CYS202_Cryptography/`.
 
 ---
 
@@ -81,17 +82,17 @@ flowchart TD
     B -->|"Campus Wi-Fi / VPN"| C["Live Mode: dspace.amritanet.edu"]
     B -->|"Off-Campus"| D["Offline Demo Engine"]
     
-    C --> M1["1. Course Selection (B.Tech, MCA, M.Tech, etc.)"]
+    C --> M1["1. Course / Branch Select (CYS, CSE, ECE, AIE, EEE, MECH, etc.)"]
     D --> M1
     
-    M1 --> M2["2. Semester Selection (Sem 1 to Sem 8)"]
-    M2 --> M3["3. Assessment Type (P1, P2, End Sem)"]
-    M3 --> M4["4. Subject / Sub-Community"]
-    M4 --> M5["5. Question Paper Year & File"]
+    M1 -->|"Quick Branch Flow"| M2["2. Select Subject (e.g. 19CYS202 Cryptography)"]
+    M2 --> M3["3. Display Papers"]
+    M3 -->|"📥 Download ALL"| BULK["Bulk Download All Papers to ./downloads/<Branch>/<Subject>/"]
+    M3 -->|"Single Paper"| ACT{"Action"}
+    ACT -->|"Open in Browser"| BROWSER["Default Browser Preview"]
+    ACT -->|"Download PDF"| DISK["Save PDF to ./downloads/"]
     
-    M5 --> ACT{"User Action"}
-    ACT -->|"Open in Browser"| BROWSER["OS Protocol Dispatch (rundll32 / open / xdg-open)"]
-    ACT -->|"Download PDF"| DISK["Stream to ./downloads/"]
+    M1 -->|"Browse Full Hierarchy"| H1["DSpace Communities → Semesters → Assessments → Papers"]
 ```
 
 </div>
