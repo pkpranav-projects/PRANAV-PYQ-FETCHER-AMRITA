@@ -99,6 +99,9 @@ func (cs *CourseSelect) ChooseSubject(branch BranchItem) {
 		var selectedSubjectCode string
 		var options []huh.Option[string]
 
+		// Option to choose a subject and download all its papers immediately
+		options = append(options, huh.NewOption("📥 [1-CLICK BULK] Choose a Subject to Download ALL Papers", "bulk_download_subject"))
+
 		for _, subj := range branch.Subjects {
 			label := fmt.Sprintf("%-10s │ %s", subj.Code, subj.Name)
 			options = append(options, huh.NewOption(label, subj.Code))
@@ -131,6 +134,8 @@ func (cs *CourseSelect) ChooseSubject(branch BranchItem) {
 		}
 
 		switch selectedSubjectCode {
+		case "bulk_download_subject":
+			cs.quickBulkDownloadSubject(branch)
 		case "back":
 			configs.SelectionHistory = []string{}
 			cs.ChooseCourse()
@@ -140,10 +145,85 @@ func (cs *CourseSelect) ChooseSubject(branch BranchItem) {
 		default:
 			for _, subj := range branch.Subjects {
 				if subj.Code == selectedSubjectCode {
-					cs.ChoosePaper(branch, subj)
-					return
+					// Ask whether to download all papers immediately or browse papers
+					var action string
+					actionForm := huh.NewForm(
+						huh.NewGroup(
+							huh.NewSelect[string]().
+								Title(fmt.Sprintf("Subject: %s - %s", subj.Code, subj.Name)).
+								Options(
+									huh.NewOption(fmt.Sprintf("📥 Download ALL Papers for this Subject (%d papers)", len(subj.Papers)), "download_all"),
+									huh.NewOption("📋 View / Select Papers & 2-Year Ranges", "browse"),
+									huh.NewOption("🔙 Back", "back"),
+								).
+								Value(&action),
+						),
+					)
+
+					if err := actionForm.Run(); err != nil {
+						fmt.Println(err)
+						continue
+					}
+
+					if action == "download_all" {
+						var fileList []File
+						for _, p := range subj.Papers {
+							fileList = append(fileList, File{name: p.Name, path: p.Path})
+						}
+						targetDir := filepath.Join("downloads", branch.Code, SanitizeFileName(subj.Code), "All_Papers")
+						DownloadAllFiles(cs.ReqClient.WebClient, fileList, targetDir)
+					} else if action == "browse" {
+						cs.ChoosePaper(branch, subj)
+						return
+					}
+					break
 				}
 			}
+		}
+	}
+}
+
+// quickBulkDownloadSubject allows picking any subject to download all of its question papers in one action
+func (cs *CourseSelect) quickBulkDownloadSubject(branch BranchItem) {
+	var chosenCode string
+	var options []huh.Option[string]
+
+	for _, subj := range branch.Subjects {
+		label := fmt.Sprintf("%-10s │ %s (%d papers)", subj.Code, subj.Name, len(subj.Papers))
+		options = append(options, huh.NewOption(label, subj.Code))
+	}
+	options = append(options, huh.NewOption("🔙 Back", "back"))
+
+	selectField := huh.NewSelect[string]().
+		Title("Select Subject to Download ALL Papers (Press '/' to search):").
+		Options(options...).
+		Value(&chosenCode)
+
+	if len(options) > 10 {
+		selectField = selectField.WithHeight(18).(*huh.Select[string])
+	}
+
+	form := huh.NewForm(
+		huh.NewGroup(selectField),
+	)
+
+	if err := form.Run(); err != nil {
+		return
+	}
+
+	if chosenCode == "back" {
+		return
+	}
+
+	for _, subj := range branch.Subjects {
+		if subj.Code == chosenCode {
+			var fileList []File
+			for _, p := range subj.Papers {
+				fileList = append(fileList, File{name: p.Name, path: p.Path})
+			}
+			targetDir := filepath.Join("downloads", branch.Code, SanitizeFileName(subj.Code), "All_Papers")
+			DownloadAllFiles(cs.ReqClient.WebClient, fileList, targetDir)
+			break
 		}
 	}
 }
