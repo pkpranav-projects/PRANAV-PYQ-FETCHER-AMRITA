@@ -1,6 +1,7 @@
 package menu
 
 import (
+	"strings"
 	"testing"
 )
 
@@ -104,24 +105,29 @@ func TestFilterSubjectsBySemester(t *testing.T) {
 		t.Errorf("expected all %d subjects when sem=0, got %d", len(cys.Subjects), len(allSubjects))
 	}
 
-	// Verify Semester 3 CYS Subjects match official Amrita curriculum
+	// Verify Semester 3 CYS Subjects match official BTC-CYS 2024 curriculum
 	sem3Subjects := FilterSubjectsBySemester(cys.Subjects, 3)
 	if len(sem3Subjects) < 6 {
 		t.Errorf("expected at least 6 subjects for CYS semester 3, got %d", len(sem3Subjects))
 	}
 
 	expectedSem3Codes := map[string]string{
-		"20CYS201": "Optimization Techniques",
-		"20CYS202": "User Interface Design",
-		"20CYS203": "Operating Systems",
-		"20CYS204": "Database Management Systems",
-		"20CYS205": "Modern Cryptography",
-		"21MAT205": "Differential Equations and Numerical Methods",
+		"24CYS201": "Optimization Techniques",
+		"24CYS202": "User Interface Design",
+		"24CYS203": "Operating Systems",
+		"24CYS204": "Advanced Programming",
+		"24CYS205": "Database Management System",
+		"24CYS206": "Modern Cryptography",
 	}
 
 	sem3Map := make(map[string]string)
 	for _, s := range sem3Subjects {
 		sem3Map[s.Code] = s.Name
+		for _, p := range s.Papers {
+			if p.Path == "" || !strings.HasPrefix(p.Path, "/xmlui/bitstream/handle/") {
+				t.Errorf("paper %s has invalid or unverified path: %s", p.Name, p.Path)
+			}
+		}
 	}
 
 	for code, expectedName := range expectedSem3Codes {

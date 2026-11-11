@@ -108,6 +108,22 @@ func (d DefaultWebClient) OpenBrowser(url string) error {
 	return nil
 }
 
+// createDemoPDF generates a syntactically valid PDF 1.4 document containing the offline demo notice.
+func createDemoPDF(filename, targetURL string) error {
+	streamContent := fmt.Sprintf("BT\n/F1 18 Tf\n50 720 Td\n(PRANAV PYQ FETCHER AMRITA) Tj\n/F1 12 Tf\n0 -30 Td\n(Offline Demo Mode - Simulated Question Paper) Tj\n0 -25 Td\n(Connect to Amrita campus Wi-Fi or VPN to download live PDFs.) Tj\nET\n")
+
+	pdfContent := fmt.Sprintf("%%PDF-1.4\n"+
+		"1 0 obj\n<< /Type /Catalog /Pages 2 0 R >>\nendobj\n"+
+		"2 0 obj\n<< /Type /Pages /Kids [3 0 R] /Count 1 >>\nendobj\n"+
+		"3 0 obj\n<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 4 0 R >> >> /Contents 5 0 R >>\nendobj\n"+
+		"4 0 obj\n<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>\nendobj\n"+
+		"5 0 obj\n<< /Length %d >>\nstream\n%sendstream\nendobj\n"+
+		"xref\n0 6\n0000000000 65535 f \n0000000009 00000 n \n0000000058 00000 n \n0000000115 00000 n \n0000000236 00000 n \n0000000305 00000 n \n"+
+		"trailer\n<< /Size 6 /Root 1 0 R >>\nstartxref\n480\n%%%%EOF", len(streamContent), streamContent)
+
+	return os.WriteFile(filename, []byte(pdfContent), 0644)
+}
+
 // DownloadFile downloads a file from the URL and saves it to the local disk inside the downloads/ folder.
 func (d DefaultWebClient) DownloadFile(url string, filename string) error {
 	// Ensure directory exists
@@ -119,19 +135,10 @@ func (d DefaultWebClient) DownloadFile(url string, filename string) error {
 	}
 
 	if configs.IsDemoMode {
-		// Create a demo placeholder PDF/text file
-		demoContent := fmt.Sprintf("PRANAV PYQ FETCHER AMRITA\n\nSimulated Question Paper Download\nURL: %s\nDownloaded at: %s\n\nConnect to Amrita Wi-Fi on campus to fetch live PDFs!\n", url, time.Now().Format(time.RFC1123))
-		return os.WriteFile(filename, []byte(demoContent), 0644)
+		return createDemoPDF(filename, url)
 	}
 
-	// Create the file
-	out, err := os.Create(filename)
-	if err != nil {
-		return err
-	}
-	defer out.Close()
-
-	// Get the data
+	// Fetch data from server
 	client := &http.Client{Timeout: 30 * time.Second}
 	resp, err := client.Get(url)
 	if err != nil {
@@ -141,17 +148,43 @@ func (d DefaultWebClient) DownloadFile(url string, filename string) error {
 
 	// Check server response
 	if resp.StatusCode != http.StatusOK {
-		// Gracefully save a notice file if an unindexed or future session is not yet scanned in DSpace
-		fallbackContent := fmt.Sprintf("PRANAV PYQ FETCHER AMRITA\n\nQuestion Paper Archive\nURL: %s\nStatus: University Paper Archived / Scheduled for digitization (%s)\nDownloaded at: %s\n", url, resp.Status, time.Now().Format(time.RFC1123))
-		return os.WriteFile(filename, []byte(fallbackContent), 0644)
+		return fmt.Errorf("server returned status: %s", resp.Status)
 	}
 
-	// Write the body to file
-	_, err = io.Copy(out, resp.Body)
+	// Read initial chunk to verify it is a valid PDF
+	headerBuf := make([]byte, 512)
+	n, err := io.ReadFull(resp.Body, headerBuf)
+	if err != nil && err != io.EOF && err != io.ErrUnexpectedEOF {
+		return err
+	}
+	headerBuf = headerBuf[:n]
+
+	// Verify PDF magic bytes (%PDF)
+	if !strings.HasPrefix(string(headerBuf), "%PDF") {
+		return fmt.Errorf("file received from server is not a valid PDF")
+	}
+
+	// Create output file only after successful response and PDF verification
+	out, err := os.Create(filename)
 	if err != nil {
 		return err
 	}
 
+	// Write verified header chunk
+	if _, err := out.Write(headerBuf); err != nil {
+		out.Close()
+		_ = os.Remove(filename)
+		return err
+	}
+
+	// Stream remainder of response body
+	if _, err := io.Copy(out, resp.Body); err != nil {
+		out.Close()
+		_ = os.Remove(filename)
+		return err
+	}
+
+	out.Close()
 	return nil
 }
 

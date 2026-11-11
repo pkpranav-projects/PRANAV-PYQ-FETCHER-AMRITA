@@ -1,6 +1,10 @@
 package webclient
 
 import (
+	"amrita_pyq/cmd/internal/configs"
+	"os"
+	"path/filepath"
+	"strings"
 	"testing"
 )
 
@@ -67,4 +71,33 @@ func TestOpenBrowser(t *testing.T) {
 			}
 		})
 	}
+}
+
+func TestDownloadFileDemoMode(t *testing.T) {
+	configs.IsDemoMode = true
+	defer func() { configs.IsDemoMode = false }()
+
+	client := DefaultWebClient{}
+	tmpFile := filepath.Join(t.TempDir(), "test_demo.pdf")
+
+	err := client.DownloadFile("http://example.com/demo.pdf", tmpFile)
+	if err != nil {
+		t.Fatalf("DownloadFile failed in demo mode: %v", err)
+	}
+
+	data, err := os.ReadFile(tmpFile)
+	if err != nil {
+		t.Fatalf("failed to read downloaded file: %v", err)
+	}
+
+	if !strings.HasPrefix(string(data), "%PDF-1.4") {
+		t.Errorf("demo file is not a valid PDF: expected prefix '%%PDF-1.4', got %q", string(data[:min(10, len(data))]))
+	}
+}
+
+func min(a, b int) int {
+	if a < b {
+		return a
+	}
+	return b
 }

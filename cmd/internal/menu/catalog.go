@@ -365,68 +365,8 @@ func GetBranchCatalog() []BranchItem {
 		{
 			Code:        "CYS",
 			Name:        "Cyber Security",
-			Description: "B.Tech Computer Science and Engineering (Cyber Security)",
-			Subjects: []SubjectItem{
-				// Semester 1
-				{Code: "20CYS101", Name: "Classical Cryptography", Semester: 1, Papers: makePapers("CYS", "20CYS101")},
-				{Code: "20CYS102", Name: "Principles of Engineering", Semester: 1, Papers: makePapers("CYS", "20CYS102")},
-				{Code: "20CYS103", Name: "Computer Hardware and System Essentials", Semester: 1, Papers: makePapers("CYS", "20CYS103")},
-				{Code: "24CYS102", Name: "Problem Solving and Algorithmic Thinking", Semester: 1, Papers: makePapers("CYS", "24CYS102")},
-				{Code: "20MAT102", Name: "Linear Algebra", Semester: 1, Papers: makePapers("CYS", "20MAT102")},
-				{Code: "21MAT105", Name: "Multi-Variable Calculus", Semester: 1, Papers: makePapers("CYS", "21MAT105")},
-
-				// Semester 2
-				{Code: "20CYS111", Name: "Digital Signal Processing", Semester: 2, Papers: makePapers("CYS", "20CYS111")},
-				{Code: "20CYS112", Name: "Computer Organization and Architecture", Semester: 2, Papers: makePapers("CYS", "20CYS112")},
-				{Code: "20CYS113", Name: "Computer Programming", Semester: 2, Papers: makePapers("CYS", "20CYS113")},
-				{Code: "20CYS114", Name: "Cyber Security Essentials", Semester: 2, Papers: makePapers("CYS", "20CYS114")},
-				{Code: "20MAT112", Name: "Number Theory and Algebra", Semester: 2, Papers: makePapers("CYS", "20MAT112")},
-				{Code: "20MAT113", Name: "Discrete Mathematics", Semester: 2, Papers: makePapers("CYS", "20MAT113")},
-
-				// Semester 3 (Official Amrita Curriculum & DSpace Records)
-				{Code: "20CYS201", Name: "Optimization Techniques", Semester: 3, Papers: makePapers("CYS", "20CYS201")},
-				{Code: "20CYS202", Name: "User Interface Design", Semester: 3, Papers: makePapers("CYS", "20CYS202")},
-				{Code: "20CYS203", Name: "Operating Systems", Semester: 3, Papers: makePapers("CYS", "20CYS203")},
-				{Code: "20CYS204", Name: "Database Management Systems", Semester: 3, Papers: makePapers("CYS", "20CYS204")},
-				{Code: "20CYS205", Name: "Modern Cryptography", Semester: 3, Papers: makePapers("CYS", "20CYS205")},
-				{Code: "21MAT205", Name: "Differential Equations and Numerical Methods", Semester: 3, Papers: makePapers("CYS", "21MAT205")},
-				{Code: "19MAT205", Name: "Probability and Random Processes", Semester: 3, Papers: makePapers("CYS", "19MAT205")},
-
-				// Semester 4
-				{Code: "20CYS211", Name: "Probability and Statistics", Semester: 4, Papers: makePapers("CYS", "20CYS211")},
-				{Code: "20CYS212", Name: "Multimedia Processing", Semester: 4, Papers: makePapers("CYS", "20CYS212")},
-				{Code: "21CYS213", Name: "System Security", Semester: 4, Papers: makePapers("CYS", "21CYS213")},
-				{Code: "20CY214", Name: "Data Structures and Algorithms", Semester: 4, Papers: makePapers("CYS", "20CY214")},
-				{Code: "20CYS215", Name: "Machine Learning in Cyber Security", Semester: 4, Papers: makePapers("CYS", "20CYS215")},
-
-				// Semester 5
-				{Code: "20CYS301", Name: "Digital Communications", Semester: 5, Papers: makePapers("CYS", "20CYS301")},
-				{Code: "20CYS302", Name: "Secure Coding", Semester: 5, Papers: makePapers("CYS", "20CYS302")},
-				{Code: "20CYS303", Name: "Computer Networks", Semester: 5, Papers: makePapers("CYS", "20CYS303")},
-				{Code: "20CYS304", Name: "Artificial Intelligence and Neural Networks", Semester: 5, Papers: makePapers("CYS", "20CYS304")},
-				{Code: "20CYS305", Name: "Algorithms: Design and Analysis", Semester: 5, Papers: makePapers("CYS", "20CYS305")},
-				{Code: "21MAT305", Name: "Graph Theory Algorithms and Complex Analysis", Semester: 5, Papers: makePapers("CYS", "21MAT305")},
-
-				// Semester 6
-				{Code: "20CYS311", Name: "Cyber Forensics", Semester: 6, Papers: makePapers("CYS", "20CYS311")},
-				{Code: "20CYS312", Name: "Principles of Programming Languages", Semester: 6, Papers: makePapers("CYS", "20CYS312")},
-				{Code: "20CYS313", Name: "Network Security", Semester: 6, Papers: makePapers("CYS", "20CYS313")},
-				{Code: "20CYS314", Name: "Applied Cryptography", Semester: 6, Papers: makePapers("CYS", "20CYS314")},
-				{Code: "20CYS315", Name: "Automata Theory and Compiler Design", Semester: 6, Papers: makePapers("CYS", "20CYS315")},
-				{Code: "21MAT306", Name: "Optimization Techniques", Semester: 6, Papers: makePapers("CYS", "21MAT306")},
-
-				// Semester 7
-				{Code: "20CYS401", Name: "Cyber Threat Intelligence & Incident Response", Semester: 7, Papers: makePapers("CYS", "20CYS401")},
-				{Code: "20CYS403", Name: "Web Application Security", Semester: 7, Papers: makePapers("CYS", "20CYS403")},
-				{Code: "20CYS432", Name: "Vulnerability Assessment and Penetration Testing", Semester: 7, Papers: makePapers("CYS", "20CYS432")},
-				{Code: "20CYS441", Name: "Formal Methods for Security", Semester: 7, Papers: makePapers("CYS", "20CYS441")},
-				{Code: "20CYS442", Name: "Cloud Security and Virtualization", Semester: 7, Papers: makePapers("CYS", "20CYS442")},
-
-				// Semester 8
-				{Code: "20CYS451", Name: "Blockchain Technology and Security", Semester: 8, Papers: makePapers("CYS", "20CYS451")},
-				{Code: "20CYS452", Name: "IoT Security and Privacy", Semester: 8, Papers: makePapers("CYS", "20CYS452")},
-				{Code: "20CYS499", Name: "Capstone Project / Internship", Semester: 8, Papers: makePapers("CYS", "20CYS499")},
-			},
+			Description: "B.Tech Computer Science and Engineering (Cyber Security) - 2024 Curriculum",
+			Subjects:    realCYSSubjects,
 		},
 		{
 			Code:        "CSE",
