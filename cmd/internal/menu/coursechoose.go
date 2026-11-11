@@ -26,40 +26,94 @@ type (
 	}
 )
 
-// ChooseCourse presents top-level branch selection (CYS, CSE, ECE, AIE, etc.)
-// and the option to browse the classic full DSpace directory.
+// ChooseCourse presents top-level selection with Cyber Security as the primary featured course
 func (cs *CourseSelect) ChooseCourse() {
+	var selectedOption string
+	var options []huh.Option[string]
+
+	// 1. Easy Mode
+	options = append(options, huh.NewOption("⚡      │ Easy Mode: Fast Past 5-Year Pack Downloader (Midterms + EndSem by 2-Year Range)", "easy_mode"))
+
+	// 2. Primary featured program: Cyber Security (CYS)
+	options = append(options, huh.NewOption("🛡️  CYS │ Cyber Security (B.Tech CYS)", "CYS"))
+
+	// 3. Other Courses & Branches
+	options = append(options, huh.NewOption("📚      │ Other Courses & Branches (CSE, ECE, AIE, EEE, MECH, MCA, M.Tech)", "other_courses"))
+
+	// 4. Classic DSpace Explorer
+	options = append(options, huh.NewOption("📂      │ Browse Full DSpace Directory (Semester by Semester)", "dspace_full"))
+
+	// 5. Quit
+	options = append(options, huh.NewOption("❌      │ Quit", "quit"))
+
+	selectField := huh.NewSelect[string]().
+		Title("Select Course or Mode (Press '/' to search)").
+		Options(options...).
+		Value(&selectedOption)
+
+	form := huh.NewForm(
+		huh.NewGroup(selectField),
+	)
+
+	if err := form.Run(); err != nil {
+		fmt.Printf("Error: %v\n", err)
+		os.Exit(1)
+	}
+
+	switch selectedOption {
+	case "quit":
+		util.QuitWithSpinner()
+	case "easy_mode":
+		em := EasyModeSelect{ReqClient: cs.ReqClient}
+		em.StartEasyMode()
+		return
+	case "dspace_full":
+		configs.SelectionHistory = []string{"DSpace Full Directory"}
+		cs.browseDSpaceDirectory()
+		return
+	case "other_courses":
+		cs.ChooseOtherCourse()
+		return
+	case "CYS":
+		branches := GetBranchCatalog()
+		for _, b := range branches {
+			if b.Code == "CYS" {
+				configs.SelectionHistory = []string{"Cyber Security (CYS)"}
+				cs.ChooseSemester(b)
+				return
+			}
+		}
+	}
+}
+
+// ChooseOtherCourse lets the user access other engineering and master's courses
+func (cs *CourseSelect) ChooseOtherCourse() {
 	branches := GetBranchCatalog()
 
 	var selectedBranch string
 	var options []huh.Option[string]
 
-	// Add Easy Mode (Fast Past 5-Year Pack Downloader) at the top
-	options = append(options, huh.NewOption("⚡      │ Easy Mode: Fast Past 5-Year Pack Downloader (Midterms + EndSem by 2-Year Range)", "easy_mode"))
-
-	// Add quick branch options
 	for _, b := range branches {
+		if b.Code == "CYS" {
+			continue // CYS is featured on the main menu
+		}
 		label := fmt.Sprintf("%-6s │ %s", b.Code, b.Name)
 		options = append(options, huh.NewOption(label, b.Code))
 	}
-
-	// Add classic explorer and quit options
-	options = append(options, huh.NewOption("📂      │ Browse Full DSpace Directory (Semester by Semester)", "dspace_full"))
-	options = append(options, huh.NewOption("❌      │ Quit", "quit"))
+	options = append(options, huh.NewOption("🔙 Back to Main Menu", "back"))
+	options = append(options, huh.NewOption("❌ Quit", "quit"))
 
 	selectField := huh.NewSelect[string]().
-		Title("Select Course / Branch or Mode (Press '/' to search)").
+		Title("Select Other Course / Branch (Press '/' to search)").
 		Options(options...).
 		Value(&selectedBranch)
 
 	if len(options) > 8 {
-		selectField = selectField.WithHeight(16).(*huh.Select[string])
+		selectField = selectField.WithHeight(14).(*huh.Select[string])
 	}
 
 	form := huh.NewForm(
-		huh.NewGroup(
-			selectField,
-		),
+		huh.NewGroup(selectField),
 	)
 
 	if err := form.Run(); err != nil {
@@ -70,52 +124,120 @@ func (cs *CourseSelect) ChooseCourse() {
 	if selectedBranch == "quit" {
 		util.QuitWithSpinner()
 	}
-
-	if selectedBranch == "easy_mode" {
-		em := EasyModeSelect{ReqClient: cs.ReqClient}
-		em.StartEasyMode()
+	if selectedBranch == "back" {
+		cs.ChooseCourse()
 		return
 	}
 
-	if selectedBranch == "dspace_full" {
-		configs.SelectionHistory = []string{"DSpace Full Directory"}
-		cs.browseDSpaceDirectory()
-		return
-	}
-
-	// Find the chosen branch
 	for _, b := range branches {
 		if b.Code == selectedBranch {
 			configs.SelectionHistory = []string{b.Code + " (" + b.Name + ")"}
-			cs.ChooseSubject(b)
+			cs.ChooseSemester(b)
 			return
 		}
 	}
 }
 
-// ChooseSubject displays all subjects under the selected course/branch.
-func (cs *CourseSelect) ChooseSubject(branch BranchItem) {
+// ChooseSemester asks for the semester first (Semester 1 to 8, or All)
+func (cs *CourseSelect) ChooseSemester(branch BranchItem) {
 	for {
-		var selectedSubjectCode string
+		var selectedSem int
+		options := []huh.Option[int]{
+			huh.NewOption("Semester 1 (1st Year)", 1),
+			huh.NewOption("Semester 2 (1st Year)", 2),
+			huh.NewOption("Semester 3 (2nd Year)", 3),
+			huh.NewOption("Semester 4 (2nd Year)", 4),
+			huh.NewOption("Semester 5 (3rd Year)", 5),
+			huh.NewOption("Semester 6 (3rd Year)", 6),
+			huh.NewOption("Semester 7 (4th Year)", 7),
+			huh.NewOption("Semester 8 (4th Year)", 8),
+			huh.NewOption("All Semesters (Show all subjects)", 0),
+			huh.NewOption("🔙 Back", -1),
+			huh.NewOption("❌ Quit", -2),
+		}
+
+		configs.SelectionHistory = []string{branch.Code + " (" + branch.Name + ")"}
+		selectionDisplay := "Program:\n" + branch.Code + " - " + branch.Name
+
+		selectField := huh.NewSelect[int]().
+			Title(fmt.Sprintf("Select Semester for %s:", branch.Name)).
+			Options(options...).
+			Value(&selectedSem)
+
+		form := huh.NewForm(
+			huh.NewGroup(
+				huh.NewNote().TitleFunc(func() string { return selectionDisplay }, &configs.SelectionHistory),
+				selectField,
+			),
+		)
+
+		if err := form.Run(); err != nil {
+			fmt.Printf("Error: %v\n", err)
+			os.Exit(1)
+		}
+
+		if selectedSem == -2 {
+			util.QuitWithSpinner()
+		}
+		if selectedSem == -1 {
+			configs.SelectionHistory = []string{}
+			cs.ChooseCourse()
+			return
+		}
+
+		cs.ChooseSemesterPapers(branch, selectedSem)
+	}
+}
+
+// ChooseSemesterPapers displays subjects and question papers for the selected semester
+func (cs *CourseSelect) ChooseSemesterPapers(branch BranchItem, sem int) {
+	for {
+		subjects := FilterSubjectsBySemester(branch.Subjects, sem)
+
+		// Collect all papers across these semester subjects
+		var allSemPapers []PaperItem
+		for _, s := range subjects {
+			allSemPapers = append(allSemPapers, s.Papers...)
+		}
+
+		var selectedAction string
 		var options []huh.Option[string]
 
-		// Option to choose a subject and download all its papers immediately
-		options = append(options, huh.NewOption("📥 [1-CLICK BULK] Choose a Subject to Download ALL Papers", "bulk_download_subject"))
+		semLabel := "All Semesters"
+		if sem > 0 {
+			semLabel = fmt.Sprintf("Semester %d", sem)
+			// Option to download all papers for this entire semester at once
+			if len(allSemPapers) > 0 {
+				options = append(options, huh.NewOption(
+					fmt.Sprintf("📥 [DOWNLOAD ALL] Download ALL Question Papers for Semester %d (%d papers)", sem, len(allSemPapers)),
+					"download_sem_all",
+				))
+			}
+		}
 
-		for _, subj := range branch.Subjects {
-			label := fmt.Sprintf("%-10s │ %s", subj.Code, subj.Name)
+		// Option to pick a subject and download its papers immediately
+		options = append(options, huh.NewOption("📥 [1-CLICK BULK] Select a Subject to Download ALL Its Papers", "bulk_download_subject"))
+
+		// List of subjects for this semester
+		for _, subj := range subjects {
+			label := fmt.Sprintf("%-10s │ %s (%d papers)", subj.Code, subj.Name, len(subj.Papers))
 			options = append(options, huh.NewOption(label, subj.Code))
 		}
 
-		options = append(options, huh.NewOption("🔙 Back to Courses", "back"))
+		options = append(options, huh.NewOption("🔙 Back to Semesters", "back"))
+		options = append(options, huh.NewOption("🏠 Main Menu", "main_menu"))
 		options = append(options, huh.NewOption("❌ Quit", "quit"))
 
-		selectionDisplay := "Selection(s):\n" + strings.Join(configs.SelectionHistory, " → ")
+		configs.SelectionHistory = []string{branch.Code, semLabel}
+		selectionDisplay := fmt.Sprintf(
+			"Program: %s (%s) → %s\nTotal Available Subjects: %d | Total Papers: %d",
+			branch.Code, branch.Name, semLabel, len(subjects), len(allSemPapers),
+		)
 
 		selectField := huh.NewSelect[string]().
-			Title(fmt.Sprintf("Select Subject for %s (Press '/' to filter)", branch.Code)).
+			Title(fmt.Sprintf("%s - %s: Select Subject or Download All", branch.Code, semLabel)).
 			Options(options...).
-			Value(&selectedSubjectCode)
+			Value(&selectedAction)
 
 		if len(options) > 10 {
 			selectField = selectField.WithHeight(18).(*huh.Select[string])
@@ -133,18 +255,32 @@ func (cs *CourseSelect) ChooseSubject(branch BranchItem) {
 			os.Exit(1)
 		}
 
-		switch selectedSubjectCode {
+		switch selectedAction {
+		case "download_sem_all":
+			var fileList []File
+			for _, p := range allSemPapers {
+				fileList = append(fileList, File{name: p.Name, path: p.Path})
+			}
+			targetDir := filepath.Join("downloads", branch.Code, fmt.Sprintf("Semester_%d_All", sem))
+			DownloadAllFiles(cs.ReqClient.WebClient, fileList, targetDir)
+
 		case "bulk_download_subject":
 			cs.quickBulkDownloadSubject(branch)
+
 		case "back":
+			return
+
+		case "main_menu":
 			configs.SelectionHistory = []string{}
 			cs.ChooseCourse()
 			return
+
 		case "quit":
 			util.QuitWithSpinner()
+
 		default:
 			for _, subj := range branch.Subjects {
-				if subj.Code == selectedSubjectCode {
+				if subj.Code == selectedAction {
 					// Ask whether to download all papers immediately or browse papers
 					var action string
 					actionForm := huh.NewForm(
@@ -174,7 +310,6 @@ func (cs *CourseSelect) ChooseSubject(branch BranchItem) {
 						DownloadAllFiles(cs.ReqClient.WebClient, fileList, targetDir)
 					} else if action == "browse" {
 						cs.ChoosePaper(branch, subj)
-						return
 					}
 					break
 				}
@@ -189,7 +324,7 @@ func (cs *CourseSelect) quickBulkDownloadSubject(branch BranchItem) {
 	var options []huh.Option[string]
 
 	for _, subj := range branch.Subjects {
-		label := fmt.Sprintf("%-10s │ %s (%d papers)", subj.Code, subj.Name, len(subj.Papers))
+		label := fmt.Sprintf("%-10s (Sem %d) │ %s (%d papers)", subj.Code, subj.Semester, subj.Name, len(subj.Papers))
 		options = append(options, huh.NewOption(label, subj.Code))
 	}
 	options = append(options, huh.NewOption("🔙 Back", "back"))
@@ -343,7 +478,7 @@ func (cs *CourseSelect) ChoosePaper(branch BranchItem, subject SubjectItem) {
 
 		case "back_subjects":
 			configs.SelectionHistory = []string{branch.Code + " (" + branch.Name + ")"}
-			cs.ChooseSubject(branch)
+			cs.ChooseSemesterPapers(branch, subject.Semester)
 			return
 
 		case "main_menu":
@@ -391,7 +526,7 @@ func (cs *CourseSelect) ChoosePaper(branch BranchItem, subject SubjectItem) {
 						if !strings.HasSuffix(strings.ToLower(cleanName), ".pdf") {
 							cleanName += ".pdf"
 						}
-						targetFolder := filepath.Join("downloads", branch.Code, SanitizeFileName(subject.Code))
+						targetFolder := filepath.Join("downloads", branch.Code, SanitizeFileName(subject.Code), paper.Year)
 						downloadPath := filepath.Join(targetFolder, cleanName)
 						fmt.Printf("Downloading to %s...\n", downloadPath)
 

@@ -94,32 +94,29 @@ $ pranav-pyq
 
 Select Course / Branch or Mode (Press '/' to search)
 > ⚡     │ Easy Mode: Fast Past 5-Year Pack Downloader (Midterms + EndSem by 2-Year Range)
-  CYS    │ Cyber Security
-  CSE    │ Computer Science & Engineering
-  ECE    │ Electronics & Communication
-  AIE    │ Artificial Intelligence
-  EEE    │ Electrical & Electronics
-  MECH   │ Mechanical Engineering
-  MCA    │ Master of Computer Applications
-  MTECH  │ M.Tech Computer Science
+  🛡️ CYS │ Cyber Security (B.Tech CYS)
+  📚     │ Other Courses & Branches (CSE, ECE, AIE, EEE, MECH, MCA, M.Tech)
   📂     │ Browse Full DSpace Directory (Semester by Semester)
   ❌     │ Quit
 ```
 
 ---
 
-### 2. Easy Mode: Semester & Subject Selection
-In **Easy Mode**, pick your semester (e.g., `Semester 4`), choose your branch, and select your subject:
+### 2. Cyber Security: Semester & Subject Selection
+Inside **Cyber Security**, select your semester first (e.g. `Semester 4`), then access all subjects and papers:
 
 ```text
 Selection(s):
-⚡ Easy Mode → CYS → Semester 4
+CYS → Semester 4
 
-Select Subject for CYS - Semester 4 (Press '/' to search)
-> 19CYS202 (Sem 4) │ Cryptography and Network Security
-  19CYS203 (Sem 4) │ Operating Systems and System Security
-  19CYS205 (Sem 4) │ Computer Networks and Protocols
-  🔙 Back to Branch Selection
+CYS - Semester 4: Select Subject or Download All
+> 📥 [DOWNLOAD ALL] Download ALL Question Papers for Semester 4 (18 papers)
+  📥 [1-CLICK BULK] Select a Subject to Download ALL Its Papers
+  19CYS202   │ Cryptography and Network Security (18 papers)
+  19CYS203   │ Operating Systems and System Security (18 papers)
+  19CYS205   │ Computer Networks and Protocols (18 papers)
+  🔙 Back to Semesters
+  🏠 Main Menu
   ❌ Quit
 ```
 
