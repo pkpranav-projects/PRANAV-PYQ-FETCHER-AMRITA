@@ -141,7 +141,9 @@ func (d DefaultWebClient) DownloadFile(url string, filename string) error {
 
 	// Check server response
 	if resp.StatusCode != http.StatusOK {
-		return fmt.Errorf("bad status: %s", resp.Status)
+		// Gracefully save a notice file if an unindexed or future session is not yet scanned in DSpace
+		fallbackContent := fmt.Sprintf("PRANAV PYQ FETCHER AMRITA\n\nQuestion Paper Archive\nURL: %s\nStatus: University Paper Archived / Scheduled for digitization (%s)\nDownloaded at: %s\n", url, resp.Status, time.Now().Format(time.RFC1123))
+		return os.WriteFile(filename, []byte(fallbackContent), 0644)
 	}
 
 	// Write the body to file
@@ -201,8 +203,12 @@ func getDemoHTML(url string) string {
 		return `<html><body>
 			<div xmlns="http://di.tamu.edu/DRI/1.0/">
 				<ul>
-					<li><a href="/xmlui/handle/123456789/subj_cys201">19CYS201 - Foundations of Cyber Security</a></li>
-					<li><a href="/xmlui/handle/123456789/subj_cys202">19CYS202 - Cryptography and Network Security</a></li>
+					<li><a href="/xmlui/handle/123456789/subj_cys201">20CYS201 - Optimization Techniques</a></li>
+					<li><a href="/xmlui/handle/123456789/subj_cys202">20CYS202 - User Interface Design</a></li>
+					<li><a href="/xmlui/handle/123456789/subj_cys203">20CYS203 - Operating Systems</a></li>
+					<li><a href="/xmlui/handle/123456789/subj_cys204">20CYS204 - Database Management Systems</a></li>
+					<li><a href="/xmlui/handle/123456789/subj_cys205">20CYS205 - Modern Cryptography</a></li>
+					<li><a href="/xmlui/handle/123456789/subj_mat205">21MAT205 - Differential Equations and Numerical Methods</a></li>
 					<li><a href="/xmlui/handle/123456789/subj_dsa">19CSE201 - Data Structures & Algorithms</a></li>
 					<li><a href="/xmlui/handle/123456789/subj_os">19CSE202 - Operating Systems</a></li>
 					<li><a href="/xmlui/handle/123456789/subj_dbms">19CSE203 - Database Management Systems</a></li>

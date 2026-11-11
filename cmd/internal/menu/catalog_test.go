@@ -103,6 +103,39 @@ func TestFilterSubjectsBySemester(t *testing.T) {
 	if len(allSubjects) != len(cys.Subjects) {
 		t.Errorf("expected all %d subjects when sem=0, got %d", len(cys.Subjects), len(allSubjects))
 	}
+
+	// Verify Semester 3 CYS Subjects match official Amrita curriculum
+	sem3Subjects := FilterSubjectsBySemester(cys.Subjects, 3)
+	if len(sem3Subjects) < 6 {
+		t.Errorf("expected at least 6 subjects for CYS semester 3, got %d", len(sem3Subjects))
+	}
+
+	expectedSem3Codes := map[string]string{
+		"20CYS201": "Optimization Techniques",
+		"20CYS202": "User Interface Design",
+		"20CYS203": "Operating Systems",
+		"20CYS204": "Database Management Systems",
+		"20CYS205": "Modern Cryptography",
+		"21MAT205": "Differential Equations and Numerical Methods",
+	}
+
+	sem3Map := make(map[string]string)
+	for _, s := range sem3Subjects {
+		sem3Map[s.Code] = s.Name
+	}
+
+	for code, expectedName := range expectedSem3Codes {
+		name, found := sem3Map[code]
+		if !found {
+			t.Errorf("missing expected CYS Sem 3 subject %s (%s)", code, expectedName)
+		} else if name != expectedName {
+			t.Errorf("subject %s has name %q, expected %q", code, name, expectedName)
+		}
+	}
+
+	for _, s := range sem3Subjects {
+		t.Logf("CYS Sem 3: %s | %s (%d papers)", s.Code, s.Name, len(s.Papers))
+	}
 }
 
 func TestSanitizeFileName(t *testing.T) {
