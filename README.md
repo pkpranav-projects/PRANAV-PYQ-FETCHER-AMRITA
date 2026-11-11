@@ -58,23 +58,24 @@ Amrita Vishwa Vidyapeetham stores its official Previous Year Question Papers (PY
 
 ## ✨ Key Features
 
+- ⚡ **Easy Mode (Fast Past 5-Year Pack Downloader)**: Pick your Semester and Subject to instantly download all Mid-Term (P1, P2) and End-Semester papers across the past 5 years in 1-click, or choose separated **2-year ranges** (`2025–2026`, `2023–2024`, `2021–2022`, `2019–2020`).
 - 🛡️ **Direct Course & Branch Select**: Instantly pick from top branches including **Cyber Security (`CYS`)**, **Computer Science (`CSE`)**, **Electronics (`ECE`)**, **Artificial Intelligence (`AIE`)**, **Electrical (`EEE`)**, **Mechanical (`MECH`)**, **`MCA`**, and **`M.Tech`**, or browse the full raw DSpace directory.
 - 📚 **Subject-First Workflow**: Browse all subjects mapped to your branch (e.g., *19CYS202 - Cryptography and Network Security*) with real-time fuzzy search (`/`) before viewing papers.
-- 📥 **Bulk "Download ALL Papers"**: Save every question paper for your chosen subject in a single action with real-time progress indicators into organized subdirectories.
+- 📥 **Bulk & 2-Year Range Downloads**: Save entire question paper sets in one go with real-time progress indicators into organized folders (e.g., `downloads/CYS/19CYS202/2023-2024/`).
 - ⚡ **Automatic Campus Pre-Flight Check**: Pings `dspace.amritanet.edu:8080` on launch to verify campus network connectivity.
 - 🚀 **Offline Demo Mode**: Stuck at home without campus Wi-Fi or VPN? Launch Demo Mode to explore the full curriculum, test filters, and preview the workflow with simulated papers.
 - 🔍 **Instant Fuzzy Search (`/`)**: Simply tap `/` in any menu to type and filter subjects, branches, or papers on the fly.
 - 🌐 **Seamless In-Browser Viewing**: Opens selected PDFs directly in your default web browser (Edge, Chrome, Brave, Firefox) using native OS handlers.
-- 📁 **Organized Local Downloads**: Automatically structures downloads into clean folders like `downloads/CYS/19CYS202/`.
-- ⬅️ **Smart Stack Navigation & Breadcrumbs**: Displays your exact location (e.g. `CYS → 19CYS202 Cryptography and Network Security`) and lets you step back effortlessly without restarting.
+- 📁 **Organized Local Downloads**: Automatically structures downloads into clean folders like `downloads/CYS/19CYS202/Past_5_Years_All/`.
+- ⬅️ **Smart Stack Navigation & Breadcrumbs**: Displays your exact location (e.g. `⚡ Easy Mode → CYS → Sem 4 → 19CYS202 Cryptography`) and lets you step back effortlessly without restarting.
 - 🎨 **Modern Terminal User Interface**: Styled with Charm's `huh` and `lipgloss` with custom ASCII banners, spinners, and vibrant color-coded states.
 
 ---
 
 ## 🖥️ Terminal Walkthrough
 
-### 1. Launching & Course / Branch Selection
-When you run `pranav-pyq`, the app performs the campus network check and lets you pick your engineering branch directly:
+### 1. Launching & Mode / Branch Selection
+When you run `pranav-pyq`, the app performs the campus network check and offers **Easy Mode** for rapid past-5-year downloads or standard branch navigation:
 
 ```text
 $ pranav-pyq
@@ -91,8 +92,9 @@ $ pranav-pyq
  |_|      |_| \___\_\|_|   |_____| |_| \____|_| |_|_____|_| \_\
                === AMRITA UNIVERSITY EDITION ===
 
-Select Course / Branch (Press '/' to search)
-> CYS    │ Cyber Security
+Select Course / Branch or Mode (Press '/' to search)
+> ⚡     │ Easy Mode: Fast Past 5-Year Pack Downloader (Midterms + EndSem by 2-Year Range)
+  CYS    │ Cyber Security
   CSE    │ Computer Science & Engineering
   ECE    │ Electronics & Communication
   AIE    │ Artificial Intelligence
@@ -106,64 +108,62 @@ Select Course / Branch (Press '/' to search)
 
 ---
 
-### 2. Choosing Your Subject
-Select your subject from the curated branch catalog (or tap `/` to filter):
+### 2. Easy Mode: Semester & Subject Selection
+In **Easy Mode**, pick your semester (e.g., `Semester 4`), choose your branch, and select your subject:
 
 ```text
 Selection(s):
-CYS (Cyber Security)
+⚡ Easy Mode → CYS → Semester 4
 
-Select Subject for CYS (Press '/' to filter)
-  19CYS201   │ Foundations of Cyber Security
-> 19CYS202   │ Cryptography and Network Security
-  19CYS203   │ Operating Systems and System Security
-  19CYS204   │ Data Structures and Algorithms
-  19CYS205   │ Computer Networks and Protocols
-  19CYS301   │ Secure Coding and Software Security
-  19CYS302   │ Digital Forensics and Incident Response
-  🔙 Back to Courses
+Select Subject for CYS - Semester 4 (Press '/' to search)
+> 19CYS202 (Sem 4) │ Cryptography and Network Security
+  19CYS203 (Sem 4) │ Operating Systems and System Security
+  19CYS205 (Sem 4) │ Computer Networks and Protocols
+  🔙 Back to Branch Selection
   ❌ Quit
 ```
 
 ---
 
-### 3. Displaying Papers & "Download ALL Papers"
-View all question papers for the chosen subject and download them all in bulk:
+### 3. Downloading Past 5 Years Papers in One Go or by 2-Year Ranges
+Mid-term (P1, P2) and End-Semester papers are presented with 2-year range buttons:
 
 ```text
-Selection(s):
-CYS → 19CYS202 Cryptography and Network Security
+⚡ FAST EXAM PACK DOWNLOADER
+Subject: 19CYS202 - Cryptography and Network Security (Semester 4)
+Total Papers Available: 18 (Midterms + EndSemesters)
 
-Papers for 19CYS202: Cryptography and Network Security
-> 📥 Download ALL Papers (8 available)
-  2023 - End Semester Examination (Solved)
-  2023 - Periodical Examination 2 (P2)
-  2023 - Periodical Examination 1 (P1)
-  2022 - End Semester Examination
-  2022 - Periodical Examination 2 (P2)
-  2022 - Periodical Examination 1 (P1)
-  2021 - End Semester Examination
-  2020 - End Semester Examination
+Choose Download Action or 2-Year Range:
+> 📥 [DOWNLOAD ALL] Past 5 Years Papers (2021 – 2026: Midterms + EndSems) [14 papers]
+  📦 [2-YEAR RANGE] 2025 – 2026 Papers (Midterm & EndSem) [4 papers]
+  📦 [2-YEAR RANGE] 2023 – 2024 Papers (Midterm & EndSem) [6 papers]
+  📦 [2-YEAR RANGE] 2021 – 2022 Papers (Midterm & EndSem) [5 papers]
+  📦 [2-YEAR RANGE] 2019 – 2020 Papers (Midterm & EndSem) [4 papers]
+  📄 [2026 Midterm] [19CYS202] 2026 - Mid-Term Examination (P1)
+  📄 [2025 EndSem ] [19CYS202] 2025 - End Semester Examination (Regular)
+  📄 [2025 Midterm] [19CYS202] 2025 - Periodical Examination 2 (Mid Term 2)
+  📄 [2025 Midterm] [19CYS202] 2025 - Periodical Examination 1 (Mid Term 1)
+  📄 [2024 EndSem ] [19CYS202] 2024 - End Semester Examination (Regular)
+  📄 [2024 Midterm] [19CYS202] 2024 - Periodical Examination 2 (Mid Term 2)
+  ...
   🔙 Back to Subjects
   🏠 Main Menu
   ❌ Quit
 ```
 
-Selecting **📥 Download ALL Papers** starts an automated bulk download with real-time file-by-file progress:
+Selecting any 2-year range or the full 5-year pack initiates automated bulk downloading with live progress:
 
 ```text
-📥 Bulk Downloading 8 question paper(s) into ./downloads/CYS/19CYS202...
+📥 Bulk Downloading 6 question paper(s) into ./downloads/CYS/19CYS202/2023-2024...
 
-  [1/8] Downloading 2023 - End Semester Examination (Solved)... ✓ Saved
-  [2/8] Downloading 2023 - Periodical Examination 2 (P2)... ✓ Saved
-  [3/8] Downloading 2023 - Periodical Examination 1 (P1)... ✓ Saved
-  [4/8] Downloading 2022 - End Semester Examination... ✓ Saved
-  [5/8] Downloading 2022 - Periodical Examination 2 (P2)... ✓ Saved
-  [6/8] Downloading 2022 - Periodical Examination 1 (P1)... ✓ Saved
-  [7/8] Downloading 2021 - End Semester Examination... ✓ Saved
-  [8/8] Downloading 2020 - End Semester Examination... ✓ Saved
+  [1/6] Downloading [19CYS202] 2024 - End Semester Examination (Regular)... ✓ Saved
+  [2/6] Downloading [19CYS202] 2024 - Periodical Examination 2 (Mid Term 2)... ✓ Saved
+  [3/6] Downloading [19CYS202] 2024 - Periodical Examination 1 (Mid Term 1)... ✓ Saved
+  [4/6] Downloading [19CYS202] 2023 - End Semester Examination (Solved)... ✓ Saved
+  [5/6] Downloading [19CYS202] 2023 - Periodical Examination 2 (Mid Term 2)... ✓ Saved
+  [6/6] Downloading [19CYS202] 2023 - Periodical Examination 1 (Mid Term 1)... ✓ Saved
 
-✓ Bulk Download Complete! All 8 papers saved in ./downloads/CYS/19CYS202
+✓ Bulk Download Complete! All 6 papers saved in ./downloads/CYS/19CYS202/2023-2024
 ```
 
 ---

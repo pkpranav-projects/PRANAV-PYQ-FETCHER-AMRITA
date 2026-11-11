@@ -24,13 +24,14 @@ hero:
 
 ## Core Capabilities
 
+- **⚡ Easy Mode (Fast Past 5-Year Pack Downloader)** &mdash; Select your Semester and Subject, then download all Midterms (P1, P2) and End-Semesters in 1 click, or separated by 2-year ranges (`2025–2026`, `2023–2024`, `2021–2022`, `2019–2020`).
 - **Direct Branch & Course Selection** &mdash; Select directly from top branches like Cyber Security (`CYS`), Computer Science (`CSE`), Electronics (`ECE`), Artificial Intelligence (`AIE`), Electrical (`EEE`), Mechanical (`MECH`), `MCA`, and `M.Tech`, or explore the full DSpace archive.
 - **Subject-First Exploration** &mdash; Pick your subject directly from an extensive curriculum catalog with real-time fuzzy search (`/`) before viewing papers.
-- **Bulk "Download ALL Papers"** &mdash; Download every question paper for a chosen subject or semester in a single click with real-time progress indicators into organized folders.
+- **Bulk & 2-Year Range Downloads** &mdash; Download past 5 years papers or specific 2-year exam packs in a single click with real-time progress indicators into organized folders.
 - **Automatic Pre-Flight Network Ping** &mdash; Automatically tests socket connectivity to `dspace.amritanet.edu:8080` on launch, detecting campus Wi-Fi or VPN without any manual configuration.
 - **Built-in Offline Demo Mode** &mdash; Browse courses, test fuzzy search, and explore simulated question papers offline when off-campus.
 - **Native Browser PDF Preview** &mdash; Seamlessly launches question paper PDFs inside your default browser (Microsoft Edge, Chrome, Firefox, Brave) for high-fidelity viewing.
-- **Organized Local Downloads** &mdash; Automatically organizes downloads into structured directories like `downloads/CYS/19CYS202_Cryptography/`.
+- **Organized Local Downloads** &mdash; Automatically organizes downloads into structured directories like `downloads/CYS/19CYS202/2023-2024/`.
 
 ---
 
@@ -82,17 +83,21 @@ flowchart TD
     B -->|"Campus Wi-Fi / VPN"| C["Live Mode: dspace.amritanet.edu"]
     B -->|"Off-Campus"| D["Offline Demo Engine"]
     
-    C --> M1["1. Course / Branch Select (CYS, CSE, ECE, AIE, EEE, MECH, etc.)"]
-    D --> M1
+    C --> M0["Mode Selection"]
+    D --> M0
+
+    M0 -->|"⚡ Easy Mode"| E1["1. Select Semester (Sem 1 to 8 / All)"]
+    E1 --> E2["2. Select Branch (CYS, CSE, ECE, etc.)"]
+    E2 --> E3["3. Select Subject"]
+    E3 --> E4["4. Fast Downloader (Midterms + EndSem)"]
+    E4 -->|"📥 Past 5 Years Pack"| D5["Download All 2021-2026 Papers in 1-Click"]
+    E4 -->|"📦 2-Year Ranges"| D2["Download 25-26 / 23-24 / 21-22 / 19-20 Packs"]
+
+    M0 -->|"Standard Mode"| M1["1. Course / Branch Select"]
+    M1 --> M2["2. Select Subject"]
+    M2 --> M3["3. Display Papers & Ranges"]
     
-    M1 -->|"Quick Branch Flow"| M2["2. Select Subject (e.g. 19CYS202 Cryptography)"]
-    M2 --> M3["3. Display Papers"]
-    M3 -->|"📥 Download ALL"| BULK["Bulk Download All Papers to ./downloads/<Branch>/<Subject>/"]
-    M3 -->|"Single Paper"| ACT{"Action"}
-    ACT -->|"Open in Browser"| BROWSER["Default Browser Preview"]
-    ACT -->|"Download PDF"| DISK["Save PDF to ./downloads/"]
-    
-    M1 -->|"Browse Full Hierarchy"| H1["DSpace Communities → Semesters → Assessments → Papers"]
+    M0 -->|"Browse Full Hierarchy"| H1["DSpace Communities → Semesters → Assessments → Papers"]
 ```
 
 </div>
