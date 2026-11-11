@@ -1,6 +1,7 @@
 package menu
 
 import (
+	"errors"
 	"fmt"
 	"os"
 	"path/filepath"
@@ -71,7 +72,7 @@ func (sct *SubCommunityTable) ChooseSubCommunity(url string) {
 		}
 
 		// Create the form.
-		form := huh.NewForm(
+		form := NewMenuForm(
 			huh.NewGroup(
 				huh.NewNote().
 					TitleFunc(func() string { return selectionDisplay }, &configs.SelectionHistory),
@@ -82,6 +83,13 @@ func (sct *SubCommunityTable) ChooseSubCommunity(url string) {
 		// Run the form.
 		err = form.Run()
 		if err != nil {
+			if errors.Is(err, huh.ErrUserAborted) {
+				cs := CourseSelect{
+					ReqClient: sct.ReqClient,
+				}
+				cs.ChooseCourse()
+				return
+			}
 			fmt.Printf("Error: %v", err)
 			os.Exit(1)
 		}
@@ -103,7 +111,7 @@ func (sct *SubCommunityTable) ChooseSubCommunity(url string) {
 
 					// Ask whether to download all papers immediately or view them
 					var action string
-					actionForm := huh.NewForm(
+					actionForm := NewMenuForm(
 						huh.NewGroup(
 							huh.NewSelect[string]().
 								Title(fmt.Sprintf("Subject: %s", subComItem.name)).
@@ -117,6 +125,9 @@ func (sct *SubCommunityTable) ChooseSubCommunity(url string) {
 					)
 
 					if err := actionForm.Run(); err != nil {
+						if errors.Is(err, huh.ErrUserAborted) {
+							continue
+						}
 						fmt.Println(err)
 						continue
 					}

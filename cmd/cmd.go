@@ -40,7 +40,7 @@ var Cmd = &cobra.Command{
 			))
 
 			var choice string
-			form := huh.NewForm(
+			form := menu.NewMenuForm(
 				huh.NewGroup(
 					huh.NewSelect[string]().
 						Title("Select an option").

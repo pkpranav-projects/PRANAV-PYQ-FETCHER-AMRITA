@@ -1,6 +1,7 @@
 package menu
 
 import (
+	"errors"
 	"fmt"
 	"os"
 	"strings"
@@ -56,7 +57,7 @@ func (sc *SemTable) ChooseQuestionSetFromSemester(url string) {
 	options = append(options, huh.NewOption("Quit", "Quit"))
 	selectionDisplay := "Selection(s):\n" + strings.Join(configs.SelectionHistory, " → ")
 	// Create the form.
-	form := huh.NewForm(
+	form := NewMenuForm(
 		huh.NewGroup(
 			huh.NewNote().
 				TitleFunc(func() string { return selectionDisplay }, &configs.SelectionHistory),
@@ -71,6 +72,16 @@ func (sc *SemTable) ChooseQuestionSetFromSemester(url string) {
 
 	err = form.Run()
 	if err != nil {
+		if errors.Is(err, huh.ErrUserAborted) {
+			if len(configs.SelectionHistory) > 0 {
+				configs.SelectionHistory = configs.SelectionHistory[:len(configs.SelectionHistory)-1]
+			}
+			cs := CourseSelect{
+				ReqClient: sc.ReqClient,
+			}
+			cs.ChooseCourse()
+			return
+		}
 		fmt.Printf("Error: %v", err)
 		os.Exit(1)
 	}

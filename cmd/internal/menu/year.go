@@ -1,6 +1,7 @@
 package menu
 
 import (
+	"errors"
 	"fmt"
 	"os"
 	"path/filepath"
@@ -136,7 +137,7 @@ func (yt *YearTable) ChooseQP(url string) {
 		}
 
 		// Create the form.
-		form := huh.NewForm(
+		form := NewMenuForm(
 			huh.NewGroup(
 				huh.NewNote().
 					TitleFunc(func() string { return selectionDisplay }, &configs.SelectionHistory),
@@ -147,6 +148,13 @@ func (yt *YearTable) ChooseQP(url string) {
 		// Run the form.
 		err = form.Run()
 		if err != nil {
+			if errors.Is(err, huh.ErrUserAborted) {
+				cs := CourseSelect{
+					ReqClient: yt.ReqClient,
+				}
+				cs.ChooseCourse()
+				return
+			}
 			fmt.Printf("Error: %v", err)
 			os.Exit(1)
 		}
@@ -174,7 +182,7 @@ func (yt *YearTable) ChooseQP(url string) {
 
 					// --- Ask to Open or Download ---
 					var action string
-					actionForm := huh.NewForm(
+					actionForm := NewMenuForm(
 						huh.NewGroup(
 							huh.NewSelect[string]().
 								Title(fmt.Sprintf("Action for: %s", fileItem.name)).
@@ -188,6 +196,9 @@ func (yt *YearTable) ChooseQP(url string) {
 					)
 
 					if err := actionForm.Run(); err != nil {
+						if errors.Is(err, huh.ErrUserAborted) {
+							continue
+						}
 						fmt.Println(err)
 						continue
 					}

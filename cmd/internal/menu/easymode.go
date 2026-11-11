@@ -1,6 +1,7 @@
 package menu
 
 import (
+	"errors"
 	"fmt"
 	"os"
 	"path/filepath"
@@ -48,7 +49,7 @@ func (em *EasyModeSelect) ChooseSemester() {
 		Options(options...).
 		Value(&selectedSem)
 
-	form := huh.NewForm(
+	form := NewMenuForm(
 		huh.NewGroup(
 			huh.NewNote().TitleFunc(func() string { return selectionDisplay }, &configs.SelectionHistory),
 			selectField,
@@ -56,6 +57,12 @@ func (em *EasyModeSelect) ChooseSemester() {
 	)
 
 	if err := form.Run(); err != nil {
+		if errors.Is(err, huh.ErrUserAborted) {
+			configs.SelectionHistory = []string{}
+			cs := CourseSelect{ReqClient: em.ReqClient}
+			cs.ChooseCourse()
+			return
+		}
 		fmt.Printf("Error: %v\n", err)
 		os.Exit(1)
 	}
@@ -104,7 +111,7 @@ func (em *EasyModeSelect) ChooseBranch(sem int) {
 		selectField = selectField.WithHeight(14).(*huh.Select[string])
 	}
 
-	form := huh.NewForm(
+	form := NewMenuForm(
 		huh.NewGroup(
 			huh.NewNote().TitleFunc(func() string { return selectionDisplay }, &configs.SelectionHistory),
 			selectField,
@@ -112,6 +119,10 @@ func (em *EasyModeSelect) ChooseBranch(sem int) {
 	)
 
 	if err := form.Run(); err != nil {
+		if errors.Is(err, huh.ErrUserAborted) {
+			em.ChooseSemester()
+			return
+		}
 		fmt.Printf("Error: %v\n", err)
 		os.Exit(1)
 	}
@@ -163,7 +174,7 @@ func (em *EasyModeSelect) ChooseSubject(sem int, branch BranchItem) {
 			selectField = selectField.WithHeight(16).(*huh.Select[string])
 		}
 
-		form := huh.NewForm(
+		form := NewMenuForm(
 			huh.NewGroup(
 				huh.NewNote().TitleFunc(func() string { return selectionDisplay }, &configs.SelectionHistory),
 				selectField,
@@ -171,6 +182,10 @@ func (em *EasyModeSelect) ChooseSubject(sem int, branch BranchItem) {
 		)
 
 		if err := form.Run(); err != nil {
+			if errors.Is(err, huh.ErrUserAborted) {
+				em.ChooseBranch(sem)
+				return
+			}
 			fmt.Printf("Error: %v\n", err)
 			os.Exit(1)
 		}
@@ -254,7 +269,7 @@ func (em *EasyModeSelect) ShowEasyModeDownloader(branch BranchItem, subject Subj
 			selectField = selectField.WithHeight(18).(*huh.Select[string])
 		}
 
-		form := huh.NewForm(
+		form := NewMenuForm(
 			huh.NewGroup(
 				huh.NewNote().TitleFunc(func() string { return selectionDisplay }, &configs.SelectionHistory),
 				selectField,
@@ -262,6 +277,10 @@ func (em *EasyModeSelect) ShowEasyModeDownloader(branch BranchItem, subject Subj
 		)
 
 		if err := form.Run(); err != nil {
+			if errors.Is(err, huh.ErrUserAborted) {
+				em.ChooseSubject(sem, branch)
+				return
+			}
 			fmt.Printf("Error: %v\n", err)
 			os.Exit(1)
 		}
@@ -332,7 +351,7 @@ func (em *EasyModeSelect) ShowEasyModeDownloader(branch BranchItem, subject Subj
 					}
 
 					var action string
-					actionForm := huh.NewForm(
+					actionForm := NewMenuForm(
 						huh.NewGroup(
 							huh.NewSelect[string]().
 								Title(fmt.Sprintf("Action for: %s", paper.Name)).
@@ -346,6 +365,9 @@ func (em *EasyModeSelect) ShowEasyModeDownloader(branch BranchItem, subject Subj
 					)
 
 					if err := actionForm.Run(); err != nil {
+						if errors.Is(err, huh.ErrUserAborted) {
+							continue
+						}
 						fmt.Println(err)
 						continue
 					}

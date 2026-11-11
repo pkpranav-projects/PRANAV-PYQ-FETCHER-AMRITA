@@ -1,6 +1,7 @@
 package menu
 
 import (
+	"errors"
 	"fmt"
 	"os"
 	"path/filepath"
@@ -51,11 +52,14 @@ func (cs *CourseSelect) ChooseCourse() {
 		Options(options...).
 		Value(&selectedOption)
 
-	form := huh.NewForm(
+	form := NewMenuForm(
 		huh.NewGroup(selectField),
 	)
 
 	if err := form.Run(); err != nil {
+		if errors.Is(err, huh.ErrUserAborted) {
+			util.QuitWithSpinner()
+		}
 		fmt.Printf("Error: %v\n", err)
 		os.Exit(1)
 	}
@@ -112,11 +116,15 @@ func (cs *CourseSelect) ChooseOtherCourse() {
 		selectField = selectField.WithHeight(14).(*huh.Select[string])
 	}
 
-	form := huh.NewForm(
+	form := NewMenuForm(
 		huh.NewGroup(selectField),
 	)
 
 	if err := form.Run(); err != nil {
+		if errors.Is(err, huh.ErrUserAborted) {
+			cs.ChooseCourse()
+			return
+		}
 		fmt.Printf("Error: %v\n", err)
 		os.Exit(1)
 	}
@@ -164,7 +172,7 @@ func (cs *CourseSelect) ChooseSemester(branch BranchItem) {
 			Options(options...).
 			Value(&selectedSem)
 
-		form := huh.NewForm(
+		form := NewMenuForm(
 			huh.NewGroup(
 				huh.NewNote().TitleFunc(func() string { return selectionDisplay }, &configs.SelectionHistory),
 				selectField,
@@ -172,6 +180,9 @@ func (cs *CourseSelect) ChooseSemester(branch BranchItem) {
 		)
 
 		if err := form.Run(); err != nil {
+			if errors.Is(err, huh.ErrUserAborted) {
+				return
+			}
 			fmt.Printf("Error: %v\n", err)
 			os.Exit(1)
 		}
@@ -243,7 +254,7 @@ func (cs *CourseSelect) ChooseSemesterPapers(branch BranchItem, sem int) {
 			selectField = selectField.WithHeight(18).(*huh.Select[string])
 		}
 
-		form := huh.NewForm(
+		form := NewMenuForm(
 			huh.NewGroup(
 				huh.NewNote().TitleFunc(func() string { return selectionDisplay }, &configs.SelectionHistory),
 				selectField,
@@ -251,6 +262,9 @@ func (cs *CourseSelect) ChooseSemesterPapers(branch BranchItem, sem int) {
 		)
 
 		if err := form.Run(); err != nil {
+			if errors.Is(err, huh.ErrUserAborted) {
+				return
+			}
 			fmt.Printf("Error: %v\n", err)
 			os.Exit(1)
 		}
@@ -283,7 +297,7 @@ func (cs *CourseSelect) ChooseSemesterPapers(branch BranchItem, sem int) {
 				if subj.Code == selectedAction {
 					// Ask whether to download all papers immediately or browse papers
 					var action string
-					actionForm := huh.NewForm(
+					actionForm := NewMenuForm(
 						huh.NewGroup(
 							huh.NewSelect[string]().
 								Title(fmt.Sprintf("Subject: %s - %s", subj.Code, subj.Name)).
@@ -297,6 +311,9 @@ func (cs *CourseSelect) ChooseSemesterPapers(branch BranchItem, sem int) {
 					)
 
 					if err := actionForm.Run(); err != nil {
+						if errors.Is(err, huh.ErrUserAborted) {
+							continue
+						}
 						fmt.Println(err)
 						continue
 					}
@@ -338,7 +355,7 @@ func (cs *CourseSelect) quickBulkDownloadSubject(branch BranchItem) {
 		selectField = selectField.WithHeight(18).(*huh.Select[string])
 	}
 
-	form := huh.NewForm(
+	form := NewMenuForm(
 		huh.NewGroup(selectField),
 	)
 
@@ -419,7 +436,7 @@ func (cs *CourseSelect) ChoosePaper(branch BranchItem, subject SubjectItem) {
 			selectField = selectField.WithHeight(18).(*huh.Select[string])
 		}
 
-		form := huh.NewForm(
+		form := NewMenuForm(
 			huh.NewGroup(
 				huh.NewNote().TitleFunc(func() string { return selectionDisplay }, &configs.SelectionHistory),
 				selectField,
@@ -427,6 +444,9 @@ func (cs *CourseSelect) ChoosePaper(branch BranchItem, subject SubjectItem) {
 		)
 
 		if err := form.Run(); err != nil {
+			if errors.Is(err, huh.ErrUserAborted) {
+				return
+			}
 			fmt.Printf("Error: %v\n", err)
 			os.Exit(1)
 		}
@@ -499,7 +519,7 @@ func (cs *CourseSelect) ChoosePaper(branch BranchItem, subject SubjectItem) {
 					}
 
 					var action string
-					actionForm := huh.NewForm(
+					actionForm := NewMenuForm(
 						huh.NewGroup(
 							huh.NewSelect[string]().
 								Title(fmt.Sprintf("Action for: %s", paper.Name)).
@@ -513,6 +533,9 @@ func (cs *CourseSelect) ChoosePaper(branch BranchItem, subject SubjectItem) {
 					)
 
 					if err := actionForm.Run(); err != nil {
+						if errors.Is(err, huh.ErrUserAborted) {
+							continue
+						}
 						fmt.Println(err)
 						continue
 					}
@@ -572,7 +595,7 @@ func (cs *CourseSelect) browseDSpaceDirectory() {
 	options = append(options, huh.NewOption("🔙 Back to Main Menu", "back"))
 	options = append(options, huh.NewOption("❌ Quit", "quit"))
 
-	form := huh.NewForm(
+	form := NewMenuForm(
 		huh.NewGroup(
 			huh.NewSelect[string]().
 				Title("DSpace Course Communities").
@@ -583,6 +606,11 @@ func (cs *CourseSelect) browseDSpaceDirectory() {
 
 	err = form.Run()
 	if err != nil {
+		if errors.Is(err, huh.ErrUserAborted) {
+			configs.SelectionHistory = []string{}
+			cs.ChooseCourse()
+			return
+		}
 		fmt.Printf("Error: %v", err)
 		os.Exit(1)
 	}
